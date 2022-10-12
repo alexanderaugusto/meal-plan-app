@@ -1,5 +1,24 @@
 .page {
   background-color: var(--color-bg);
-  padding: 1rem;
+  width: 100%;
   height: 100%;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-gap: 4rem;
+  box-sizing: border-box;
+  padding: 1rem;
+}
+
+.page section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.page section h1 {
+  color: var(--color-dark);
+  margin-bottom: 0.8rem;
+  width: 100%;
+  text-align: left;
 }

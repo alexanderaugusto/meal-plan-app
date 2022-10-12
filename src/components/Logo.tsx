@@ -6,16 +6,21 @@ import LOGO_ICON_RED from '../assets/img/logo-icon-red.png'
 import LOGO_ICON_WHITE from '../assets/img/logo-icon-white.png'
 import LOGO_ICON_BLACK from '../assets/img/logo-icon-black.png'
 
+interface LogoSizeProps {
+  width: string
+  height: string
+}
 interface LogoPros {
   color: string
   icon?: boolean
+  size?: LogoSizeProps
 }
 
 interface LogoTypesProps {
   [key: string]: string
 }
 
-export default function Logo({ color = 'orange', icon = false }: LogoPros) {
+export default function Logo({ color = 'orange', icon = false, size }: LogoPros) {
   const logoTypes: LogoTypesProps = {
     red: LOGO_RED,
     white: LOGO_WHITE,
@@ -30,7 +35,8 @@ export default function Logo({ color = 'orange', icon = false }: LogoPros) {
 
   return (
     <img
-      className={styles['logo']}
+      className={styles.logo}
+      style={{ width: size?.width, height: size?.height }}
       src={icon ? logoIconTypes[color] : logoTypes[color]}
       alt="logo"
     />

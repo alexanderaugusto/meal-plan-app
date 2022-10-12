@@ -1,8 +1,24 @@
 :root {
   --color-primary: #EE3E38;
   --color-light: #FAFFFD;
-  --color-bg: #EDF6F9;
+  --color-bg: #F4F7F8;
   --color-dark: #071013;
   --color-grey: #5B5B5B;
-  --color-grey-light: #706677;
+  --color-grey-light: #C7C3C9;
+  --color-protein: #F2C94C;
+  --color-carbohydrate: #2F80ED;
+  --color-fat: #EB5757;
+  --color-energy: #6FCF97;
+  --color-meal-yellow: #F2C94C;
+  --color-meal-blue: #0F4286;
+  --color-meal-red: #DB1C1C;
+  --color-meal-green: #266A43;
+  --color-meal-grey: #5B5B5B;
+  --color-meal-purple: #9B51E0;
+  --color-meal-orange: #F2994A;
+  --color-meal-brown: #5A432F;
+  --color-meal-pink: #E1209A;
+  --color-meal-blue-light: #2F80ED;
+  --color-meal-red-light: #EB5757;
+  --color-meal-green-light: #6FCF97;
 }
