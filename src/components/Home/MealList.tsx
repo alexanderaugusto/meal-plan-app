@@ -9,7 +9,7 @@ interface MealsProps {
   meals: MealProps[]
 }
 
-export default function Meal({ meals = [] }: MealsProps) {
+export default function MealList({ meals = [] }: MealsProps) {
   return (
     <ul className={styles.meals}>
       {meals.map(meal => (

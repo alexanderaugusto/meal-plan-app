@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useSearchParams, useNavigate } from 'react-router-dom'
-import Food from '../components/NewMeal/Food'
+import FoodList from '../components/NewMeal/FoodList'
 import Input from '../components/Input/Input'
 import Header from '../components/Header'
 import helper from '../utils/helper'
@@ -114,7 +114,7 @@ export default function NewMeal() {
       </section>
       <section className={styles['meal-foods']}>
         <h1>Alimentos</h1>
-        <Food foods={meal.foods} changeQuantity={(foodId, newQuantity) => changeQuantity(foodId, newQuantity)} />
+        <FoodList foods={meal.foods} changeQuantity={(foodId, newQuantity) => changeQuantity(foodId, newQuantity)} />
       </section>
       <section className={styles['meal-actions']}>
         <button className={styles['btn-submit']} onClick={saveMeal}>Salvar</button>

@@ -1,5 +1,5 @@
 import Logo from '../components/Logo'
-import Meal from '../components/Home/Meal'
+import MealList from '../components/Home/MealList'
 import Resume from '../components/Home/Resume'
 import { useMeal } from '../contexts/MealContext'
 import styles from './Home.module.css'
@@ -23,7 +23,7 @@ export default function Home() {
       </section>
       <section>
         <h1>Refeições</h1>
-        <Meal meals={meals} />
+        <MealList meals={meals} />
       </section>
     </div>
   )

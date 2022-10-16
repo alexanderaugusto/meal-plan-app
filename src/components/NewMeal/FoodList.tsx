@@ -8,9 +8,10 @@ import Input from '../Input/Input'
 interface FoodsProps {
   foods: FoodProps[]
   changeQuantity: (foodId: string, newQuantity: number) => void
+  openFoodModal: () => void
 }
 
-export default function Food({ foods = [], changeQuantity }: FoodsProps) {
+export default function FoodList({ foods = [], changeQuantity, openFoodModal }: FoodsProps) {
   return (
     <ul className={styles.foods}>
       {foods.map(food => (
@@ -27,10 +28,12 @@ export default function Food({ foods = [], changeQuantity }: FoodsProps) {
         </li>
       ))}
       <li>
-        <Card className={`${styles['food-card']} ${styles['new-food-card']}`}>
-          <Icon className={`${styles['icon']} ${styles['icon-add']}`} icon='plus' />
-          <h3>Novo alimento</h3>
-        </Card>
+        <button onClick={openFoodModal}>
+          <Card className={`${styles['food-card']} ${styles['new-food-card']}`}>
+            <Icon className={`${styles['icon']} ${styles['icon-add']}`} icon='plus' />
+            <h3>Novo alimento</h3>
+          </Card>
+        </button>
       </li>
     </ul>
   )
