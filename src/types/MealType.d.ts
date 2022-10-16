@@ -1,7 +1,7 @@
 import { FoodProps } from './FoodType'
 
 export interface MealProps {
-  id?: string
+  id: string
   name: string
   time: string
   totalEnergy: number

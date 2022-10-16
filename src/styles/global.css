@@ -10,7 +10,7 @@ body,
   background-color: var(--color-bg);
 }
 
-h1, h2, h3, p, li, a, button {
+h1, h2, h3, p, li, a, button, input, label {
   font-family: 'Roboto', sans-serif;
   margin: 0;
 }

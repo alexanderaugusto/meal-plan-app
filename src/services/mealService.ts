@@ -16,15 +16,14 @@ function add(meal: MealProps) {
 }
 
 function update(meal: MealProps) {
-  const mealId = meal.id || ''
-  return db.meal.update(mealId, replaceIds(meal))
+  return db.meal.update(meal.id, replaceIds(meal))
 }
 
-function remove(id: number) {
+function remove(id: string) {
   return db.meal.delete(id)
 }
 
-function getById(id: number) {
+function getById(id: string) {
   return db.meal.get(id)
 }
 

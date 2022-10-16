@@ -1,8 +1,7 @@
-import React from 'react'
-import helper from '../utils/helper'
-import Card from './Card'
-import Icon from './Icon'
-import CircularProgress from './CircularProgress'
+import helper from '../../utils/helper'
+import Card from '../Card'
+import Icon from '../Icon'
+import CircularProgress from '../CircularProgress'
 import styles from './Resume.module.css'
 
 interface ResumeProps {

@@ -1,7 +1,6 @@
-import React from 'react'
 import Logo from '../components/Logo'
-import Meal from '../components/Meal'
-import Resume from '../components/Resume'
+import Meal from '../components/Home/Meal'
+import Resume from '../components/Home/Resume'
 import { useMeal } from '../contexts/MealContext'
 import styles from './Home.module.css'
 

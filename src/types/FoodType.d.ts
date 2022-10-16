@@ -1,5 +1,5 @@
 export interface FoodProps {
-  id?: string
+  id: string
   name: string
   energy: number
   protein: number

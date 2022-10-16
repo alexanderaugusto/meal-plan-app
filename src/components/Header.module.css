@@ -1,0 +1,28 @@
+.header {
+  background-color: var(--color-primary);
+  padding: 1.5rem 1rem;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  box-sizing: border-box;
+}
+
+.header .icon {
+  color: var(--color-light);
+  font-size: 1.4rem;
+}
+
+.header h3 {
+  color: var(--color-light);
+  font-size: 1.4rem;
+  margin-left: 1.5rem;
+}
+
+.header .action {
+  margin-left: auto;
+}

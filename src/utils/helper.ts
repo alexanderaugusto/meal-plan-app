@@ -1,4 +1,6 @@
+import { COLORS, ICONS } from './constants'
 import { IconProp } from '@fortawesome/fontawesome-svg-core'
+import { MealProps } from '../types/MealType'
 
 function calculatePieChartPercentage(value: number, total: number, decimalPlaces: number = 0): number {
   const percentage = Number(((value / total) * 100).toFixed(decimalPlaces))
@@ -31,12 +33,51 @@ function orderArrayByProperty(array: any[], property: string, order: string = 'a
   })
 }
 
+function formatQuantity(quantity: number): string {
+  return quantity > 1 ? `${quantity} unidades` : `${quantity} unidade`
+}
+
+function getTimeNow(): string {
+  const date = new Date()
+  const hours = date.getHours()
+  const minutes = date.getMinutes()
+  return `${hours < 10 ? '0' + hours : hours}:${minutes < 10 ? '0' + minutes : minutes}`
+}
+
+function getRandomColor(): string {
+  return COLORS[Math.floor(Math.random() * COLORS.length)]
+}
+
+function getRandomIcon(): string {
+  return ICONS[Math.floor(Math.random() * ICONS.length)]
+}
+
+function getDefaultMeal(): MealProps {
+  return {
+    id: generateUUID(),
+    name: '',
+    time: getTimeNow(),
+    totalEnergy: 0,
+    totalProtein: 0,
+    totalCarbohydrate: 0,
+    totalFat: 0,
+    icon: getRandomIcon(),
+    color: getRandomColor(),
+    foods: [],
+  }
+}
+
 const helper = {
   calculatePieChartPercentage,
   convertStringToIcon,
   getColorFromVariable,
   generateUUID,
-  orderArrayByProperty
+  orderArrayByProperty,
+  formatQuantity,
+  getTimeNow,
+  getRandomColor,
+  getRandomIcon,
+  getDefaultMeal
 }
 
 export default helper
