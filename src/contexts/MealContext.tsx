@@ -2,9 +2,6 @@ import React, { createContext, useState, useContext, useEffect, useCallback } fr
 import mealService from '../services/mealService'
 import { MealProps } from '../types/MealType'
 import helper from '../utils/helper'
-
-// import MEALS from '../assets/meals.json'
-
 interface MealContextProps {
   meals: MealProps[]
   foodEnergy: number
@@ -36,9 +33,6 @@ export const MealProvider = ({ children }: MealProviderProps) => {
   }, [])
 
   useEffect(() => {
-    // mealService.add(MEALS[0])
-    // mealService.add(MEALS[1])
-    // mealService.add(MEALS[2])
     getMeals()
   }, [getMeals])
 

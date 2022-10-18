@@ -28,14 +28,14 @@ export default function Resume({ baseEnergy, foodEnergy }: ResumeProps) {
             <Icon className={`${styles['icon']} ${styles['icon-energy']}`} icon='fire' />
             <p>
               Calorias Base <br />
-              <b>{baseEnergy.toString()}</b>
+              <b>{helper.formatNumber(baseEnergy, 0)}</b>
             </p>
           </li>
           <li>
             <Icon className={`${styles['icon']} ${styles['icon-food']}`} icon='utensils' />
             <p>
               Alimentos <br />
-              <b>{foodEnergy.toString()}</b>
+              <b>{helper.formatNumber(foodEnergy, 0)}</b>
             </p>
           </li>
         </ul>

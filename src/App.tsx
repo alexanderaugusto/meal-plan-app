@@ -25,7 +25,10 @@ import {
   faHotdog,
   faIceCream,
   faPizzaSlice,
-  faChevronRight
+  faBreadSlice,
+  faChevronRight,
+  faTimes,
+  faCheck
 } from "@fortawesome/free-solid-svg-icons"
 import { MealProvider } from "./contexts/MealContext"
 import Home from './pages/Home'
@@ -51,7 +54,10 @@ library.add(faUtensils,
   faHotdog,
   faIceCream,
   faPizzaSlice,
-  faChevronRight
+  faBreadSlice,
+  faChevronRight,
+  faTimes,
+  faCheck
 )
 
 export default function App() {

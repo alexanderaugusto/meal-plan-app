@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
 import Card from '../Card'
 import Icon from '../Icon'
-import styles from './Meal.module.css'
+import styles from './MealList.module.css'
 import { MealProps } from '../../types/MealType'
 import helper from '../../utils/helper'
 
@@ -28,7 +28,7 @@ export default function MealList({ meals = [] }: MealsProps) {
               <div className={styles['meal-description']}>
                 <h3>{meal.name}</h3>
                 <time>{meal.time}</time>
-                <p>{meal.totalEnergy}</p>
+                <p>{helper.formatNumber(meal.totalEnergy, 0)}</p>
               </div>
               <Icon className={`${styles['icon']} ${styles['icon-open']}`} icon='chevron-right' />
             </Card>

@@ -48,6 +48,9 @@
 .meals li .meal-card .meal-description {
   width: 100%;
   margin-left: 1.5rem;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-gap: 0.5rem;
 }
 
 .meals li .meal-card h3 {

@@ -6,9 +6,7 @@ interface CheckBoxInputProps extends React.InputHTMLAttributes<HTMLInputElement>
 export default function CheckBoxInput({ checked }: CheckBoxInputProps) {
   return (
     <div className={styles['checkbox-input']}>
-      <div className={styles['box-container']}>
-        {checked && <Icon icon="check" />}
-      </div>
+      {checked && <Icon icon="check" />}
     </div>
   )
 }

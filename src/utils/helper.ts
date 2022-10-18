@@ -37,6 +37,10 @@ function formatQuantity(quantity: number): string {
   return quantity > 1 ? `${quantity} unidades` : `${quantity} unidade`
 }
 
+function formatNumber(number: number, decimalPlaces: number = 2): string {
+  return number.toFixed(decimalPlaces).replace('.', ',')
+}
+
 function getTimeNow(): string {
   const date = new Date()
   const hours = date.getHours()
@@ -74,6 +78,7 @@ const helper = {
   generateUUID,
   orderArrayByProperty,
   formatQuantity,
+  formatNumber,
   getTimeNow,
   getRandomColor,
   getRandomIcon,
