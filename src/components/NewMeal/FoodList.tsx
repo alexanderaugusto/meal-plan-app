@@ -7,7 +7,7 @@ import helper from '../../utils/helper'
 interface FoodsProps {
   foods: FoodProps[]
   deleteFood: (foodId: string) => void
-  openFoodQuantityModal: (foodId: string, quantity: number, unit: string) => void
+  openFoodQuantityModal: (foodId: string, foodName: string, quantity: number, unit: string) => void
   openFoodModal: () => void
 }
 
@@ -23,7 +23,7 @@ export default function FoodList({ foods = [], deleteFood, openFoodModal, openFo
               <p>{`${helper.formatNumber(helper.calculateEnergy(food.attributes.energy.quantity, food.quantity, food.baseQuantity.quantity), 0)} ${food.attributes.energy.unit}`}</p>
             </div>
             <div className={styles.actions}>
-              <button className={styles['edit-food']} onClick={() => openFoodQuantityModal(food.id, food.quantity, food.baseQuantity.unit)}>
+              <button className={styles['edit-food']} onClick={() => openFoodQuantityModal(food.id, food.name, food.quantity, food.baseQuantity.unit)}>
                 <Icon className={styles.icon} icon="pen" />
               </button>
               <button className={styles['delete-food']} onClick={() => deleteFood(food.id)}>

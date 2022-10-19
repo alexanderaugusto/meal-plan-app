@@ -7,12 +7,13 @@ interface FoodQuantityModalProps {
   open: boolean
   onClose: () => void
   foodId: string
+  foodName: string
   defaultQuantity: number
   unit: string
   onSave: (foodId: string, quantity: number) => void
 }
 
-export default function FoodQuantityModal({ open, onClose, onSave, foodId, defaultQuantity, unit }: FoodQuantityModalProps) {
+export default function FoodQuantityModal({ open, onClose, onSave, foodId, foodName, defaultQuantity, unit }: FoodQuantityModalProps) {
   const [quantity, setQuantity] = useState(defaultQuantity.toString())
 
   useEffect(() => {
@@ -27,6 +28,7 @@ export default function FoodQuantityModal({ open, onClose, onSave, foodId, defau
   return (
     <Modal className={styles['food-quantity-modal']} open={open} title="Alterar quantidade" onClose={onClose}>
       <div className={styles['modal-container']}>
+        <h2>{foodName}</h2>
         <label>{`Quantidade (${unit})`}</label>
         <TextInput
           className={styles['quantity-input']}

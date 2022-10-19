@@ -15,6 +15,7 @@ import FoodQuantityModal from '../components/NewMeal/FoodQuantityModal'
 interface FoodQuantityModalProps {
   open: boolean
   foodId: string
+  foodName: string
   quantity: number
   unit: string
 }
@@ -27,7 +28,7 @@ export default function NewMeal() {
   const { getMeals } = useMeal()
   const [meal, setMeal] = useState<MealProps>(helper.getDefaultMeal())
   const [foodModalOpen, setFoodModalOpen] = useState(false)
-  const [foodQuantityModal, setFoodQuantityModal] = useState<FoodQuantityModalProps>({ open: false, foodId: '', quantity: 0, unit: '' })
+  const [foodQuantityModal, setFoodQuantityModal] = useState<FoodQuantityModalProps>({ open: false, foodId: '', foodName: '', quantity: 0, unit: '' })
 
   useEffect(() => {
     const mealId = searchParams.get(MEAL_PARAM)
@@ -123,6 +124,7 @@ export default function NewMeal() {
         open={foodQuantityModal.open}
         onClose={() => setFoodQuantityModal({ ...foodQuantityModal, open: false })}
         foodId={foodQuantityModal.foodId}
+        foodName={foodQuantityModal.foodName}
         defaultQuantity={foodQuantityModal.quantity}
         unit={foodQuantityModal.unit}
         onSave={changeQuantity}
@@ -152,7 +154,7 @@ export default function NewMeal() {
           foods={meal.foods}
           deleteFood={deleteFood}
           openFoodModal={() => setFoodModalOpen(true)}
-          openFoodQuantityModal={(foodId, quantity, unit) => setFoodQuantityModal({ open: true, foodId, quantity, unit })}
+          openFoodQuantityModal={(foodId, foodName, quantity, unit) => setFoodQuantityModal({ open: true, foodId, foodName, quantity, unit })}
         />
       </section>
       <section className={styles['meal-actions']}>

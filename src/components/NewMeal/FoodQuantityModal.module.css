@@ -6,6 +6,11 @@
   padding: 1rem;
 }
 
+.food-quantity-modal h2 {
+  color: var(--color-dark);
+  margin-bottom: 1rem;
+}
+
 .food-quantity-modal label {
   color: var(--color-grey);
 }
