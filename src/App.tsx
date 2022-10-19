@@ -28,7 +28,8 @@ import {
   faBreadSlice,
   faChevronRight,
   faTimes,
-  faCheck
+  faCheck,
+  faPen
 } from "@fortawesome/free-solid-svg-icons"
 import { MealProvider } from "./contexts/MealContext"
 import Home from './pages/Home'
@@ -57,7 +58,8 @@ library.add(faUtensils,
   faBreadSlice,
   faChevronRight,
   faTimes,
-  faCheck
+  faCheck,
+  faPen
 )
 
 export default function App() {

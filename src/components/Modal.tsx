@@ -16,8 +16,8 @@ export default function Modal({ className, open, title, children, onClose }: Mod
   }
 
   return (
-    <div className={`${styles.modal} ${className}`}>
-      <div className={styles['modal-container']}>
+    <div className={styles.modal}>
+      <div className={`${className} ${styles['modal-container']}`}>
         <header className={styles['modal-header']}>
           <h3>{title}</h3>
           <button onClick={onClose}>

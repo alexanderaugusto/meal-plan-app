@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import foodService from '../../services/foodService'
 import { FoodProps } from '../../types/FoodType'
 import helper from '../../utils/helper'
@@ -15,18 +15,24 @@ interface FoodModalProps {
 }
 
 export default function FoodModal({ open, onClose, onSave, foods }: FoodModalProps) {
+  const [originalTacoApiFoods, setOriginalTacoApiFoods] = useState<FoodProps[]>([])
   const [tacoApiFoods, setTacoApiFoods] = useState<FoodProps[]>([])
   const [selecteds, setSelecteds] = useState<number[]>([])
 
-  useEffect(() => {
+  const getFoods = useCallback(() => {
     foodService.getFoods()
       .then((foods) => {
         setTacoApiFoods(foods)
+        setOriginalTacoApiFoods(foods)
       })
       .catch((error) => {
         console.error(error)
       })
   }, [])
+
+  useEffect(() => {
+    getFoods()
+  }, [getFoods])
 
   useEffect(() => {
     setSelecteds(foods.map((food) => food.tacoApiId))
@@ -45,11 +51,11 @@ export default function FoodModal({ open, onClose, onSave, foods }: FoodModalPro
   }
 
   function saveFoods() {
-    const newFoods = tacoApiFoods
+    const newFoods = originalTacoApiFoods
       .filter(food => isSelected(food.tacoApiId))
       .map(food => {
         const existingFood = foods.find(f => f.tacoApiId === food.tacoApiId)
-        return existingFood ? existingFood : { ...food, quantity: 1 }
+        return existingFood ? existingFood : { ...food, quantity: food.baseQuantity.quantity }
       })
     onSave(newFoods)
     close()
@@ -60,10 +66,18 @@ export default function FoodModal({ open, onClose, onSave, foods }: FoodModalPro
     onClose()
   }
 
+  function searchFoods(search: string) {
+    const filteredFoods = originalTacoApiFoods.filter(food => food.name.toLowerCase().includes(search.toLowerCase()))
+    setTacoApiFoods(filteredFoods)
+  }
+
   return (
     <Modal className={styles['food-modal']} open={open} title="Buscar alimentos" onClose={close}>
       <div className={styles.search}>
-        <TextInput placeholder="Nome do alimento" />
+        <TextInput
+          placeholder="Nome do alimento"
+          onChange={(e) => searchFoods(e.target.value)}
+        />
       </div>
       <ul className={styles.foods}>
         {tacoApiFoods.map((food) => {

@@ -17,18 +17,6 @@
   justify-content: center;
 }
 
-.foods li .food-card .icon {
-  font-size: 1.2rem;
-}
-
-.foods li .food-card .icon-delete {
-  color: var(--color-grey);
-}
-
-.foods li .food-card .icon-add {
-  color: var(--color-dark);
-}
-
 .foods li .food-card .food-description {
   display: grid;
   grid-template-columns: 1fr;
@@ -37,6 +25,7 @@
 
 .foods li .food-card h3 {
   color: var(--color-dark);
+  margin-right: 2rem;
 }
 
 .foods li .food-card h4 {
@@ -49,4 +38,16 @@
 
 .foods li .new-food-card h3 {
   margin-left: 1rem;
+}
+
+.foods li .food-card .actions {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.foods li .food-card .actions .icon {
+  font-size: 1.2rem;
+  color: var(--color-grey);
 }

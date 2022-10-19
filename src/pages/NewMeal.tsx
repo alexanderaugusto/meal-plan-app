@@ -10,6 +10,14 @@ import mealService from '../services/mealService'
 import { MealProps } from '../types/MealType'
 import styles from './NewMeal.module.css'
 import { FoodProps } from '../types/FoodType'
+import FoodQuantityModal from '../components/NewMeal/FoodQuantityModal'
+
+interface FoodQuantityModalProps {
+  open: boolean
+  foodId: string
+  quantity: number
+  unit: string
+}
 
 const MEAL_PARAM = 'id'
 
@@ -19,6 +27,7 @@ export default function NewMeal() {
   const { getMeals } = useMeal()
   const [meal, setMeal] = useState<MealProps>(helper.getDefaultMeal())
   const [foodModalOpen, setFoodModalOpen] = useState(false)
+  const [foodQuantityModal, setFoodQuantityModal] = useState<FoodQuantityModalProps>({ open: false, foodId: '', quantity: 0, unit: '' })
 
   useEffect(() => {
     const mealId = searchParams.get(MEAL_PARAM)
@@ -44,8 +53,12 @@ export default function NewMeal() {
         }
         return food
       })
-      .filter(food => food.quantity > 0)
 
+    setMeal({ ...meal, foods: newFoods })
+  }
+
+  function deleteFood(foodId: string) {
+    const newFoods = meal.foods.filter(food => food.id !== foodId)
     setMeal({ ...meal, foods: newFoods })
   }
 
@@ -106,6 +119,14 @@ export default function NewMeal() {
         foods={meal.foods}
         onSave={updateFoods}
       />
+      <FoodQuantityModal
+        open={foodQuantityModal.open}
+        onClose={() => setFoodQuantityModal({ ...foodQuantityModal, open: false })}
+        foodId={foodQuantityModal.foodId}
+        defaultQuantity={foodQuantityModal.quantity}
+        unit={foodQuantityModal.unit}
+        onSave={changeQuantity}
+      />
       <section className={styles['meal-info']}>
         <h1>Informações</h1>
         <div className={styles.info}>
@@ -129,8 +150,9 @@ export default function NewMeal() {
         <h1>Alimentos</h1>
         <FoodList
           foods={meal.foods}
-          changeQuantity={(foodId, newQuantity) => changeQuantity(foodId, newQuantity)}
+          deleteFood={deleteFood}
           openFoodModal={() => setFoodModalOpen(true)}
+          openFoodQuantityModal={(foodId, quantity, unit) => setFoodQuantityModal({ open: true, foodId, quantity, unit })}
         />
       </section>
       <section className={styles['meal-actions']}>

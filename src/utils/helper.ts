@@ -56,6 +56,10 @@ function getRandomIcon(): string {
   return ICONS[Math.floor(Math.random() * ICONS.length)]
 }
 
+function calculateEnergy(energy: number, quantity: number, baseQuantity: number) {
+  return (energy * quantity) / baseQuantity
+}
+
 function getDefaultMeal(): MealProps {
   return {
     id: generateUUID(),
@@ -82,7 +86,8 @@ const helper = {
   getTimeNow,
   getRandomColor,
   getRandomIcon,
-  getDefaultMeal
+  getDefaultMeal,
+  calculateEnergy
 }
 
 export default helper

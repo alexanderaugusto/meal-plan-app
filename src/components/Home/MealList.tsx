@@ -28,7 +28,7 @@ export default function MealList({ meals = [] }: MealsProps) {
               <div className={styles['meal-description']}>
                 <h3>{meal.name}</h3>
                 <time>{meal.time}</time>
-                <p>{helper.formatNumber(meal.totalEnergy, 0)}</p>
+                <p>{helper.formatNumber(meal.totalEnergy, 0)} kcal</p>
               </div>
               <Icon className={`${styles['icon']} ${styles['icon-open']}`} icon='chevron-right' />
             </Card>

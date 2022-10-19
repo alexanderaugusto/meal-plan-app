@@ -6,8 +6,7 @@
   grid-template-columns: 1fr;
   grid-gap: 4rem;
   box-sizing: border-box;
-  padding: 1rem;
-  padding-top: 5.5rem;
+  padding: 5.5rem 1rem;
 }
 
 .page section h1 {
