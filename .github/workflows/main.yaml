@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
-      NEXT_PUBLIC_BASE_PATH: /pokedex
+      REACT_APP_TACO_API_URL: https://taco-api.vercel.app/api/v1
 
     steps:
       - name: Checkout 🛎️
