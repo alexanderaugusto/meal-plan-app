@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/meal-plan-app/static/css/main.a3f35c78.css",
-    "main.js": "/meal-plan-app/static/js/main.06aa6b2e.js",
+    "main.js": "/meal-plan-app/static/js/main.1ec8eb79.js",
     "static/media/logo-icon-red.png": "/meal-plan-app/static/media/logo-icon-red.9e2c8d4a6eeb82f42341.png",
     "static/media/logo-red.png": "/meal-plan-app/static/media/logo-red.6f41e493ca9e0618f387.png",
     "static/media/logo-white.png": "/meal-plan-app/static/media/logo-white.27049176d8ede6841324.png",
@@ -11,10 +11,10 @@
     "static/media/choose-energy-step-2.svg": "/meal-plan-app/static/media/choose-energy-step-2.7e1d4ebc05ac138b5de5c35d1c9e18ee.svg",
     "index.html": "/meal-plan-app/index.html",
     "main.a3f35c78.css.map": "/meal-plan-app/static/css/main.a3f35c78.css.map",
-    "main.06aa6b2e.js.map": "/meal-plan-app/static/js/main.06aa6b2e.js.map"
+    "main.1ec8eb79.js.map": "/meal-plan-app/static/js/main.1ec8eb79.js.map"
   },
   "entrypoints": [
     "static/css/main.a3f35c78.css",
-    "static/js/main.06aa6b2e.js"
+    "static/js/main.1ec8eb79.js"
   ]
 }
