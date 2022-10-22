@@ -5,9 +5,7 @@ import helper from '../utils/helper'
 interface MealContextProps {
   meals: MealProps[]
   foodEnergy: number
-  baseEnergy: number
   setMeals: React.Dispatch<React.SetStateAction<MealProps[]>>
-  setBaseEnergy: React.Dispatch<React.SetStateAction<number>>
   getMeals: () => void
 }
 
@@ -19,7 +17,6 @@ export const MealContext = createContext<MealContextProps>({} as MealContextProp
 
 export const MealProvider = ({ children }: MealProviderProps) => {
   const [meals, setMeals] = useState<MealProps[]>([])
-  const [baseEnergy, setBaseEnergy] = useState<number>(1500)
   const [foodEnergy, setFoodEnergy] = useState<number>(0)
 
   const getMeals = useCallback(() => {
@@ -42,7 +39,7 @@ export const MealProvider = ({ children }: MealProviderProps) => {
   }, [meals])
 
   return (
-    <MealContext.Provider value={{ meals, foodEnergy, baseEnergy, setMeals, setBaseEnergy, getMeals }}>
+    <MealContext.Provider value={{ meals, foodEnergy, setMeals, getMeals }}>
       {children}
     </MealContext.Provider>
   )

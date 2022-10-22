@@ -11,6 +11,7 @@ import { MealProps } from '../types/MealType'
 import styles from './NewMeal.module.css'
 import { FoodProps } from '../types/FoodType'
 import FoodQuantityModal from '../components/NewMeal/FoodQuantityModal'
+import { useUser } from '../contexts/UserContext'
 
 interface FoodQuantityModalProps {
   open: boolean
@@ -26,6 +27,7 @@ export default function NewMeal() {
   const [searchParams] = useSearchParams()
   const navigate = useNavigate()
   const { getMeals } = useMeal()
+  const { firstLogin } = useUser()
   const [meal, setMeal] = useState<MealProps>(helper.getDefaultMeal())
   const [foodModalOpen, setFoodModalOpen] = useState(false)
   const [foodQuantityModal, setFoodQuantityModal] = useState<FoodQuantityModalProps>({ open: false, foodId: '', foodName: '', quantity: 0, unit: '' })
@@ -45,6 +47,12 @@ export default function NewMeal() {
         })
     }
   }, [searchParams])
+
+  useEffect(() => {
+    if (firstLogin) {
+      navigate('/calories/choose')
+    }
+  }, [firstLogin, navigate])
 
   function changeQuantity(foodId: string, newQuantity: number) {
     const newFoods = meal.foods

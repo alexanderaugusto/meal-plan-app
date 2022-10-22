@@ -1,8 +1,3 @@
-import {
-  BrowserRouter,
-  Routes,
-  Route,
-} from "react-router-dom"
 import { library } from "@fortawesome/fontawesome-svg-core"
 import {
   faUtensils,
@@ -29,11 +24,16 @@ import {
   faChevronRight,
   faTimes,
   faCheck,
-  faPen
+  faPen,
+  faMale,
+  faFemale,
+  faMars,
+  faVenus,
+  faChevronLeft
 } from "@fortawesome/free-solid-svg-icons"
 import { MealProvider } from "./contexts/MealContext"
-import Home from './pages/Home'
-import NewMeal from './pages/NewMeal'
+import { UserProvider } from "./contexts/UserContext"
+import Routes from './routes/Routes'
 
 library.add(faUtensils,
   faFire,
@@ -56,21 +56,23 @@ library.add(faUtensils,
   faIceCream,
   faPizzaSlice,
   faBreadSlice,
+  faChevronLeft,
   faChevronRight,
   faTimes,
   faCheck,
-  faPen
+  faPen,
+  faMale,
+  faFemale,
+  faMars,
+  faVenus
 )
 
 export default function App() {
   return (
-    <MealProvider>
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/meal" element={<NewMeal />} />
-        </Routes>
-      </BrowserRouter>
-    </MealProvider>
+    <UserProvider>
+      <MealProvider>
+        <Routes />
+      </MealProvider>
+    </UserProvider>
   )
 }
