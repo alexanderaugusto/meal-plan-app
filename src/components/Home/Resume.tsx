@@ -1,7 +1,7 @@
-import helper from '../../utils/helper'
 import Card from '../Card'
-import Icon from '../Icon'
 import CircularProgress from '../CircularProgress'
+import Icon from '../Icon'
+import helper from '../../utils/helper'
 import styles from './Resume.module.css'
 
 interface ResumeProps {

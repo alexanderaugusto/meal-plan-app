@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
-import TextInput from '../Input/TextInput'
 import Modal from '../Modal'
+import TextInput from '../Input/TextInput'
 import styles from './FoodQuantityModal.module.css'
 
 interface FoodQuantityModalProps {

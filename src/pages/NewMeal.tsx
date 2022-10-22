@@ -1,17 +1,18 @@
 import React, { useEffect, useState } from 'react'
 import { useSearchParams, useNavigate } from 'react-router-dom'
 import FoodList from '../components/NewMeal/FoodList'
-import Input from '../components/Input/Input'
-import Header from '../components/Header'
 import FoodModal from '../components/NewMeal/FoodModal'
-import helper from '../utils/helper'
+import FoodQuantityModal from '../components/NewMeal/FoodQuantityModal'
+import Header from '../components/Header'
+import Input from '../components/Input/Input'
 import { useMeal } from '../contexts/MealContext'
+import { useUser } from '../contexts/UserContext'
 import mealService from '../services/mealService'
+import helper from '../utils/helper'
+import { FoodProps } from '../types/FoodType'
 import { MealProps } from '../types/MealType'
 import styles from './NewMeal.module.css'
-import { FoodProps } from '../types/FoodType'
-import FoodQuantityModal from '../components/NewMeal/FoodQuantityModal'
-import { useUser } from '../contexts/UserContext'
+
 
 interface FoodQuantityModalProps {
   open: boolean

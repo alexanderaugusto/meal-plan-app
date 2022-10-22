@@ -1,7 +1,7 @@
-import TextInput from './TextInput'
-import NumberInput from './NumberInput'
-import CheckBoxInput from './CheckBoxInput'
 import DateInput from './TimeInput'
+import CheckBoxInput from './CheckBoxInput'
+import NumberInput from './NumberInput'
+import TextInput from './TextInput'
 
 interface InputTypeProps {
   [text: string]: typeof TextInput

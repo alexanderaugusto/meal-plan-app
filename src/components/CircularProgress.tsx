@@ -1,6 +1,6 @@
 import { CircularProgressbar, buildStyles } from 'react-circular-progressbar'
-import 'react-circular-progressbar/dist/styles.css'
 import styles from './CircularProgress.module.css'
+import 'react-circular-progressbar/dist/styles.css'
 
 interface ColorsProps {
   path: string

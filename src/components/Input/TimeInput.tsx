@@ -1,4 +1,4 @@
-import styles from './TimeInput.module.css';
+import styles from './TimeInput.module.css'
 
 interface TimeInputProps extends React.InputHTMLAttributes<HTMLInputElement> { }
 

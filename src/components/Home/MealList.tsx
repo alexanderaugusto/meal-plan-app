@@ -1,9 +1,8 @@
 import Card from '../Card'
 import Icon from '../Icon'
-import styles from './MealList.module.css'
-import { MealProps } from '../../types/MealType'
 import helper from '../../utils/helper'
-
+import { MealProps } from '../../types/MealType'
+import styles from './MealList.module.css'
 interface MealsProps {
   meals: MealProps[]
 }

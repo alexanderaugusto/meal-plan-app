@@ -1,5 +1,5 @@
-import Icon from '../Icon';
-import styles from './CheckBoxInput.module.css';
+import Icon from '../Icon'
+import styles from './CheckBoxInput.module.css'
 
 interface CheckBoxInputProps extends React.InputHTMLAttributes<HTMLInputElement> { }
 

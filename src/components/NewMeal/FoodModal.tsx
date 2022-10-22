@@ -1,12 +1,12 @@
 import { useCallback, useEffect, useState } from 'react'
-import foodService from '../../services/foodService'
-import { FoodProps } from '../../types/FoodType'
-import helper from '../../utils/helper'
 import CheckBoxInput from '../Input/CheckBoxInput'
-import TextInput from '../Input/TextInput'
-import Modal from '../Modal'
-import styles from './FoodModal.module.css'
 import FoodQuantityModal from './FoodQuantityModal'
+import Modal from '../Modal'
+import TextInput from '../Input/TextInput'
+import foodService from '../../services/foodService'
+import helper from '../../utils/helper'
+import { FoodProps } from '../../types/FoodType'
+import styles from './FoodModal.module.css'
 
 interface FoodModalProps {
   open: boolean

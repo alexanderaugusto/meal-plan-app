@@ -1,5 +1,5 @@
-import Icon from '../Icon';
-import styles from './NumberInput.module.css';
+import Icon from '../Icon'
+import styles from './NumberInput.module.css'
 
 interface NumberInputProps extends React.InputHTMLAttributes<HTMLInputElement> { }
 
