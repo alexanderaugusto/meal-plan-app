@@ -1,11 +1,11 @@
+import { useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
 import Logo from '../components/Logo'
 import MealList from '../components/Home/MealList'
 import Resume from '../components/Home/Resume'
 import { useMeal } from '../contexts/MealContext'
 import { useUser } from '../contexts/UserContext'
 import styles from './Home.module.css'
-import { useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
 
 export default function Home() {
   const { meals, foodEnergy } = useMeal()
@@ -29,7 +29,7 @@ export default function Home() {
           }}
         />
       </section>
-      <section>
+      <section className={styles['resume-section']}>
         <h1>Resumo</h1>
         <Resume baseEnergy={user.baseEnergy} foodEnergy={foodEnergy} />
       </section>

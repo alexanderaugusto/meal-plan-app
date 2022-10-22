@@ -3,7 +3,6 @@ import Card from '../Card'
 import Icon from '../Icon'
 import CircularProgress from '../CircularProgress'
 import styles from './Resume.module.css'
-import { useNavigate } from 'react-router-dom'
 
 interface ResumeProps {
   baseEnergy: number
@@ -11,14 +10,8 @@ interface ResumeProps {
 }
 
 export default function Resume({ baseEnergy = 1500, foodEnergy }: ResumeProps) {
-  const navigate = useNavigate()
-
-  function goToChooseEnergy() {
-    navigate('/calories/choose')
-  }
-
   return (
-    <Card className={styles.resume} onClick={goToChooseEnergy}>
+    <Card className={styles.resume} to='/calories/choose'>
       <h2>Calorias</h2>
       <p>Porcentagem de calorias baseadas nas refeições adicionadas</p>
       <div className={styles.container}>
