@@ -9,7 +9,12 @@ interface CardProps {
 
 export default function Card({ children, className, onClick }: CardProps) {
   return (
-    <div className={`${styles.card} ${className}`} onClick={onClick}>
+    <div
+      className={`${styles.card} ${className}`}
+      onClick={onClick}
+      style={{
+        cursor: onClick ? 'pointer' : 'default'
+      }}>
       {children}
     </div>
   )

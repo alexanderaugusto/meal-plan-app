@@ -31,3 +31,10 @@
   cursor: pointer;
   margin-top: 1rem;
 }
+
+@media (min-width: 600px) {
+  .food-quantity-modal {
+    width: 700px;
+    border-radius: 4px;
+  }
+}
