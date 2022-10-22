@@ -10,7 +10,7 @@ import ChooseEnergy from "../pages/ChooseEnergy"
 
 export default function Router() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename={process.env.PUBLIC_URL}>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/meal" element={<NewMeal />} />
