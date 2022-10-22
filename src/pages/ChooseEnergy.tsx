@@ -17,7 +17,7 @@ export default function ChooseEnergy() {
   const navigate = useNavigate()
   const [step, setStep] = useState(1)
   const [weight, setWeight] = useState(60)
-  const [gender, setGender] = useState('F-M')
+  const [gender, setGender] = useState('')
   const [energy, setEnergy] = useState(0)
 
   useEffect(() => {
@@ -80,6 +80,7 @@ export default function ChooseEnergy() {
         <Step
           className={`${styles.step} ${styles['step-1']}`}
           onNext={nextStep}
+          disableNext={gender === ''}
         >
           <img src={PROGRESS_STEP_1} alt="Passo 1" />
           <h2>Selecione uma opção</h2>
