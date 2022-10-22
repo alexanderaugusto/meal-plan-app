@@ -38,7 +38,8 @@ function formatQuantity(quantity: number): string {
 }
 
 function formatNumber(number: number, decimalPlaces: number = 2): string {
-  return number.toFixed(decimalPlaces).replace('.', ',')
+  const numberToFormat = number || 0
+  return numberToFormat.toFixed(decimalPlaces).replace('.', ',')
 }
 
 function getTimeNow(): string {

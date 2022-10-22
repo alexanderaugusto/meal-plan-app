@@ -34,6 +34,7 @@ export default function FoodModal({ open, onClose, onSave, foods }: FoodModalPro
       .then((foods) => {
         setTacoApiFoods(foods)
         setOriginalTacoApiFoods(foods)
+        localStorage.setItem('taco-api-foods', JSON.stringify(foods))
       })
       .catch((error) => {
         console.error(error)

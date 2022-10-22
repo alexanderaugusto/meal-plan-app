@@ -1,5 +1,6 @@
 import React, { createContext, useState, useContext, useEffect, useCallback } from 'react'
 import userService from '../services/userService'
+import foodService from '../services/foodService'
 import { UserProps } from '../types/UserType'
 
 interface UserContextProps {
@@ -41,9 +42,23 @@ export const UserProvider = ({ children }: UserProviderProps) => {
     }
   }, [])
 
+  const getFoods = useCallback(() => {
+    const foods = localStorage.getItem('taco-api-foods')
+    if (!foods) {
+      foodService.getFoods()
+        .then((foods) => {
+          localStorage.setItem('taco-api-foods', JSON.stringify(foods))
+        })
+        .catch((error) => {
+          console.error(error)
+        })
+    }
+  }, [])
+
   useEffect(() => {
     getUser()
-  }, [getUser])
+    getFoods()
+  }, [getUser, getFoods])
 
   return (
     <UserContext.Provider value={{ user, setUser, getUser, firstLogin, setFirstLogin }}>
