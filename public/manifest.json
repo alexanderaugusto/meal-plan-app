@@ -1,6 +1,6 @@
 {
-  "name": "Meal Plan App",
-  "short_name": "Meal Plan App",
+  "name": "Meal Plan",
+  "short_name": "Meal Plan",
   "theme_color": "#ee3e38",
   "background_color": "#ee3e38",
   "display": "standalone",
