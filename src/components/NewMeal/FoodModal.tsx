@@ -90,8 +90,17 @@ export default function FoodModal({ open, onClose, onSave, foods }: FoodModalPro
     onClose()
   }
 
-  function searchFoods(search: string) {
-    const filteredFoods = originalTacoApiFoods.filter(food => food.name.toLowerCase().includes(search.toLowerCase()))
+  function search(name: string, searchCriteria: string) {
+    name = name.replace(/[.,/#!$%^&*;:{}=\-_`~()]/g, '').toLowerCase()
+    searchCriteria = searchCriteria.replace(/[.,/#!$%^&*;:{}=\-_`~()]/g, '').toLowerCase()
+
+    const splittedSearchCriteria = searchCriteria.split(' ')
+
+    return splittedSearchCriteria.every(criteria => name.includes(criteria))
+  }
+
+  function searchFoods(searchCriteria: string) {
+    const filteredFoods = originalTacoApiFoods.filter(food => search(food.name, searchCriteria))
     setTacoApiFoods(filteredFoods)
   }
 
