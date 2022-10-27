@@ -1,3 +1,4 @@
+import cacheStorage from './cacheStorage'
 import { TacoApiProps, FoodProps } from '../types/FoodType'
 import { mapFoods } from './mapper/foodMapper'
 
@@ -10,11 +11,8 @@ async function getFoods(): Promise<FoodProps[]> {
     const data: TacoApiProps[] = await response.json()
     return mapFoods(data)
   } catch(error) {
-    const data = localStorage.getItem('taco-api-foods')
-    if (data) {
-      return JSON.parse(data)
-    }
-    return []
+    const data = await cacheStorage.get('taco-api-foods')
+    return data || []
   }
 }
 

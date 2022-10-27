@@ -3,6 +3,7 @@ import CheckBoxInput from '../Input/CheckBoxInput'
 import FoodQuantityModal from './FoodQuantityModal'
 import Modal from '../Modal'
 import TextInput from '../Input/TextInput'
+import cacheStorage from '../../services/cacheStorage'
 import foodService from '../../services/foodService'
 import helper from '../../utils/helper'
 import { FoodProps } from '../../types/FoodType'
@@ -34,7 +35,7 @@ export default function FoodModal({ open, onClose, onSave, foods }: FoodModalPro
       .then((foods) => {
         setTacoApiFoods(foods)
         setOriginalTacoApiFoods(foods)
-        localStorage.setItem('taco-api-foods', JSON.stringify(foods))
+        cacheStorage.put('taco-api-foods', foods)
       })
       .catch((error) => {
         console.error(error)
