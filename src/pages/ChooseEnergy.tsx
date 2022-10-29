@@ -113,7 +113,7 @@ export default function ChooseEnergy() {
             type="text"
             value={weight}
             placeholder='Meu peso'
-            onChange={(e) => setWeight(Number(e.target.value))}
+            onChange={(e) => setWeight(Number(e.target.value.replace(/[^0-9]/g, '')))}
           />
         </Step>
         <Step
@@ -127,7 +127,7 @@ export default function ChooseEnergy() {
             type="text"
             value={energy}
             placeholder='Minhas calorias gastas por dia'
-            onChange={(e) => setEnergy(Number(e.target.value))}
+            onChange={(e) => setEnergy(Number(e.target.value.replace(/[^0-9]/g, '')))}
           />
         </Step>
       </ProgressStep>

@@ -76,6 +76,19 @@ function getDefaultMeal(): MealProps {
   }
 }
 
+function formatNumberInput(value: string): string {
+  let number = Number(value.replace(/[^0-9]/g, '')).toString()
+
+  if (number.length <= 2) {
+    number = `00${number}`
+  }
+
+  const numberStart = number.substring(0, number.length - 2)
+  const numberEnd = number.slice(-2)
+
+  return `${numberStart},${numberEnd}`
+}
+
 const helper = {
   calculatePieChartPercentage,
   convertStringToIcon,
@@ -88,7 +101,8 @@ const helper = {
   getRandomColor,
   getRandomIcon,
   getDefaultMeal,
-  calculateEnergy
+  calculateEnergy,
+  formatNumberInput
 }
 
 export default helper
