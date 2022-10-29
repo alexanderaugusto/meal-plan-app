@@ -1,8 +1,7 @@
 import { useCallback, useEffect, useState } from 'react'
-import CheckBoxInput from '../Input/CheckBoxInput'
+import Input from '../Input'
 import FoodQuantityModal from './FoodQuantityModal'
 import Modal from '../Modal'
-import TextInput from '../Input/TextInput'
 import cacheStorage from '../../services/cacheStorage'
 import foodService from '../../services/foodService'
 import helper from '../../utils/helper'
@@ -118,7 +117,8 @@ export default function FoodModal({ open, onClose, onSave, foods }: FoodModalPro
       />
 
       <div className={styles.search}>
-        <TextInput
+        <Input
+          type="text"
           placeholder="Nome do alimento"
           onChange={(e) => searchFoods(e.target.value)}
         />
@@ -132,7 +132,7 @@ export default function FoodModal({ open, onClose, onSave, foods }: FoodModalPro
                 <h4>{`${food.baseQuantity.quantity} ${food.baseQuantity.unit}`}</h4>
                 <p>{`${helper.formatNumber(food.attributes.energy.quantity, 0)} ${food.attributes.energy.unit}`}</p>
               </div>
-              <CheckBoxInput checked={isSelected(food.tacoApiId)} />
+              <Input type="checkbox" checked={isSelected(food.tacoApiId)} />
             </li>
           )
         })}

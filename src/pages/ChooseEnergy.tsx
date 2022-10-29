@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import Icon from '../components/Icon'
 import { ProgressStep, Step } from '../components/ProgressSteps'
-import TextInput from '../components/Input/TextInput'
+import Input from '../components/Input'
 import { useUser } from '../contexts/UserContext'
 import userService from '../services/userService'
 import helper from '../utils/helper'
@@ -109,7 +109,8 @@ export default function ChooseEnergy() {
         >
           <img src={PROGRESS_STEP_2} alt="Passo 1" />
           <h2>Qual seu peso (kg)?</h2>
-          <TextInput
+          <Input
+            type="text"
             value={weight}
             placeholder='Meu peso'
             onChange={(e) => setWeight(Number(e.target.value))}
@@ -122,7 +123,8 @@ export default function ChooseEnergy() {
         >
           <img src={PROGRESS_STEP_3} alt="Passo 1" />
           <h2>Sua caloria base foi calculada</h2>
-          <TextInput
+          <Input
+            type="text"
             value={energy}
             placeholder='Minhas calorias gastas por dia'
             onChange={(e) => setEnergy(Number(e.target.value))}

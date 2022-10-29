@@ -1,6 +1,5 @@
 import DateInput from './TimeInput'
 import CheckBoxInput from './CheckBoxInput'
-import NumberInput from './NumberInput'
 import TextInput from './TextInput'
 
 interface InputTypeProps {
@@ -14,7 +13,6 @@ interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
 export default function Input({ type, ...props }: InputProps) {
   const inputType = {
     text: TextInput,
-    number: NumberInput,
     checkbox: CheckBoxInput,
     time: DateInput,
   } as InputTypeProps

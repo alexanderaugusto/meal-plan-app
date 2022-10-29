@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import Modal from '../Modal'
-import TextInput from '../Input/TextInput'
+import Input from '../Input'
 import styles from './FoodQuantityModal.module.css'
 
 interface FoodQuantityModalProps {
@@ -30,7 +30,8 @@ export default function FoodQuantityModal({ open, onClose, onSave, foodId, foodN
       <div className={styles['modal-container']}>
         <h2>{foodName}</h2>
         <label>{`Quantidade (${unit})`}</label>
-        <TextInput
+        <Input
+          type="text"
           className={styles['quantity-input']}
           placeholder={`Quantidade (${unit})`}
           onChange={(e) => setQuantity(e.target.value)}
