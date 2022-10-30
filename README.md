@@ -22,7 +22,7 @@ This project contains a meal plan app that allows users to create a meal plan fo
 
   - [ ] Use [Firebase](https://firebase.google.com/) to store data
   - [ ] Enable user authentication with Google and GitHub
-  - [ ] Create page to list meal details (calories, proteins, carbohydrates and fats)
+  - [x] Create page to list meal details (calories, proteins, carbohydrates and fats)
   - [ ] Create page to list food details (calories, proteins, carbohydrates and fats)
   - [ ] Add filter option to list foods page (by name, calories, category, etc)
   - [ ] Create pagination to list foods page
