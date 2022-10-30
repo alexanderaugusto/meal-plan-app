@@ -1,53 +1,13 @@
-.foods {
-  width: 100%;
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-gap: 1.3rem;
-}
-
-.foods li .food-card {
-  width: 100%;
+.food-item .actions {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  width: 100%;
 }
 
-.foods li .new-food-card {
-  justify-content: center;
-}
-
-.foods li .food-card .food-description {
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-gap: 0.5rem;
-}
-
-.foods li .food-card h3 {
-  color: var(--color-dark);
-  margin-right: 2rem;
-}
-
-.foods li .food-card h4 {
-  color: var(--color-grey);
-}
-
-.foods li .food-card p {
-  color: var(--color-grey);
-}
-
-.foods li .new-food-card h3 {
-  margin-left: 1rem;
-}
-
-.foods li .food-card .actions {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.foods li .food-card .actions .icon {
+.food-item .actions button {
   font-size: 1.2rem;
   color: var(--color-grey);
+  margin-left: 5px;
 }

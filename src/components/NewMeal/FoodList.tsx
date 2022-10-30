@@ -1,5 +1,5 @@
-import Card from '../Card'
 import Icon from '../Icon'
+import { Item, List } from '../List'
 import mealHelper from '../../utils/helper/mealHelper'
 import utilityHelper from '../../utils/helper/utilityHelper'
 import { FoodProps } from '../../types/FoodType'
@@ -14,32 +14,30 @@ interface FoodsProps {
 
 export default function FoodList({ foods = [], deleteFood, openFoodModal, openFoodQuantityModal }: FoodsProps) {
   return (
-    <ul className={styles.foods}>
+    <List newItem="Novo alimento" onClick={openFoodModal}>
       {foods.map(food => (
-        <li key={food.id}>
-          <Card className={styles['food-card']}>
-            <div className={styles['food-description']}>
-              <h3>{food.name}</h3>
-              <h4>{`${food.quantity} ${food.baseQuantity.unit}`}</h4>
-              <p>{`${utilityHelper.formatNumber(mealHelper.calculateNutrient(food.attributes.energy.quantity, food.quantity, food.baseQuantity.quantity), 0)} ${food.attributes.energy.unit}`}</p>
-            </div>
-            <div className={styles.actions}>
-              <button className={styles['edit-food']} onClick={() => openFoodQuantityModal(food.id, food.name, food.quantity, food.baseQuantity.unit)}>
-                <Icon className={styles.icon} icon="pen" />
-              </button>
-              <button className={styles['delete-food']} onClick={() => deleteFood(food.id)}>
-                <Icon className={styles.icon} icon="trash" />
-              </button>
-            </div>
-          </Card>
-        </li>
+        <Item
+          className={styles['food-item']}
+          key={food.id}
+          name={food.name}
+          description={`${food.quantity} ${food.baseQuantity.unit}`}
+          nutrients={{
+            energy: `${utilityHelper.formatNumber(mealHelper.calculateNutrient(food.attributes.energy.quantity, food.quantity, food.baseQuantity.quantity), 0)} ${food.attributes.energy.unit}`,
+            protein: `${utilityHelper.formatNumber(mealHelper.calculateNutrient(food.attributes.protein.quantity, food.quantity, food.baseQuantity.quantity), 2)} ${food.attributes.protein.unit}`,
+            carbohydrate: `${utilityHelper.formatNumber(mealHelper.calculateNutrient(food.attributes.carbohydrate.quantity, food.quantity, food.baseQuantity.quantity), 2)} ${food.attributes.carbohydrate.unit}`,
+            fat: `${utilityHelper.formatNumber(mealHelper.calculateNutrient(food.attributes.fat.quantity, food.quantity, food.baseQuantity.quantity), 2)} ${food.attributes.fat.unit}`
+          }}
+        >
+          <div className={styles.actions}>
+            <button className={styles['edit-food']} onClick={() => openFoodQuantityModal(food.id, food.name, food.quantity, food.baseQuantity.unit)}>
+              <Icon className={styles.icon} icon="pen" />
+            </button>
+            <button className={styles['delete-food']} onClick={() => deleteFood(food.id)}>
+              <Icon className={styles.icon} icon="trash" />
+            </button>
+          </div>
+        </Item>
       ))}
-      <li>
-        <Card className={`${styles['food-card']} ${styles['new-food-card']}`} onClick={openFoodModal}>
-          <Icon className={`${styles['icon']} ${styles['icon-add']}`} icon='plus' />
-          <h3>Novo alimento</h3>
-        </Card>
-      </li>
-    </ul>
+    </List>
   )
 }

@@ -1,5 +1,5 @@
-import Card from '../Card'
 import Icon from '../Icon'
+import { Item, List } from '../List'
 import utilityHelper from '../../utils/helper/utilityHelper'
 import { MealProps } from '../../types/MealType'
 import styles from './MealList.module.css'
@@ -9,34 +9,26 @@ interface MealsProps {
 
 export default function MealList({ meals = [] }: MealsProps) {
   return (
-    <ul className={styles.meals}>
+    <List newItem="Nova refeição" to="/meal">
       {meals.map(meal => (
-        <li key={meal.id}>
-          <Card className={styles['meal-card']} to={`/meal?id=${meal.id}`}>
-            <div
-              className={styles['icon-card-container']}
-              style={{ background: utilityHelper.getColorFromVariable(`--color-meal-${meal.color}`) }}
-            >
-              <Icon
-                className={`${styles['icon']} ${styles['icon-card']}`}
-                icon={utilityHelper.convertStringToIcon(meal.icon)}
-              />
-            </div>
-            <div className={styles['meal-description']}>
-              <h3>{meal.name}</h3>
-              <time>{meal.time}</time>
-              <p>{utilityHelper.formatNumber(meal.totalEnergy, 0)} kcal</p>
-            </div>
-            <Icon className={`${styles['icon']} ${styles['icon-open']}`} icon='chevron-right' />
-          </Card>
-        </li>
+        <Item
+          className={styles['meal-item']}
+          key={meal.id}
+          color={utilityHelper.getColorFromVariable(`--color-meal-${meal.color}`)}
+          icon={meal.icon}
+          name={meal.name}
+          description={meal.time}
+          to={`/meal?id=${meal.id}`}
+          nutrients={{
+            energy: `${utilityHelper.formatNumber(meal.totalEnergy, 0)} kcal`,
+            protein: `${utilityHelper.formatNumber(meal.totalProtein, 2)} g`,
+            carbohydrate: `${utilityHelper.formatNumber(meal.totalCarbohydrate, 2)} g`,
+            fat: `${utilityHelper.formatNumber(meal.totalFat, 2)} g`
+          }}
+        >
+          <Icon className={styles['icon']} icon='chevron-right' />
+        </Item>
       ))}
-      <li>
-        <Card className={`${styles['meal-card']} ${styles['new-meal-card']}`} to='/meal'>
-          <Icon className={`${styles['icon']} ${styles['icon-add']}`} icon='plus' />
-          <h3>Nova refeição</h3>
-        </Card>
-      </li>
-    </ul>
+    </List>
   )
 }
