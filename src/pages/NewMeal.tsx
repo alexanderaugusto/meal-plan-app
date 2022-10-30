@@ -4,7 +4,7 @@ import Icon from '../components/Icon'
 import FoodList from '../components/NewMeal/FoodList'
 import FoodModal from '../components/NewMeal/FoodModal'
 import FoodQuantityModal from '../components/NewMeal/FoodQuantityModal'
-import Nutrients from '../components/NewMeal/Nutrients'
+import FoodNutrients from '../components/NewMeal/FoodNutrients'
 import Header from '../components/Header'
 import Input from '../components/Input'
 import Page from '../components/Page'
@@ -173,7 +173,7 @@ export default function NewMeal() {
       {meal.foods && meal.foods.length > 0 && (
         <section className={styles['meal-nutrients']}>
           <h1>Nutrientes</h1>
-          <Nutrients foods={meal.foods} />
+          <FoodNutrients foods={meal.foods} />
         </section>
       )}
     </Page>

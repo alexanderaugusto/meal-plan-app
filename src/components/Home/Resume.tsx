@@ -13,7 +13,7 @@ export default function Resume({ baseEnergy = 1500, foodEnergy }: ResumeProps) {
   return (
     <Card className={styles.resume} to='/calories/choose'>
       <h2>Calorias</h2>
-      <p>Porcentagem de calorias baseadas nas refeições adicionadas</p>
+      <p>Porcentagem de calorias diárias baseadas nas refeições adicionadas</p>
       <div className={styles.container}>
         <CircularProgress
           value={utilityHelper.calculateCircularProgressPercentage(foodEnergy, baseEnergy)}

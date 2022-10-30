@@ -1,0 +1,17 @@
+.nutrients {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-gap: 0.5rem;
+  padding-bottom: 0;
+}
+
+.nutrients h2 {
+  width: 100%;
+  text-align: left;
+  color: var(--color-dark);
+}
+
+.nutrients p {
+  color: var(--color-grey);
+}

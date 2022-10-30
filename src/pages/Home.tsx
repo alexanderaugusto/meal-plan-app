@@ -1,5 +1,6 @@
 import Logo from '../components/Logo'
 import MealList from '../components/Home/MealList'
+import MealNutrients from '../components/Home/MealNutrients'
 import Page from '../components/Page'
 import Resume from '../components/Home/Resume'
 import { useMeal } from '../contexts/MealContext'
@@ -28,6 +29,10 @@ export default function Home() {
       <section>
         <h1>Refeições</h1>
         <MealList meals={meals} />
+      </section>
+      <section>
+        <h1>Nutrientes</h1>
+        <MealNutrients meals={meals} />
       </section>
     </Page>
   )

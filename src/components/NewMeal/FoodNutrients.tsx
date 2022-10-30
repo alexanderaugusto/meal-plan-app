@@ -4,13 +4,13 @@ import PieChart from '../PieChart'
 import mealHelper from '../../utils/helper/mealHelper'
 import utilityHelper from '../../utils/helper/utilityHelper'
 import { FoodProps } from '../../types/FoodType'
-import styles from './Nutrients.module.css'
+import styles from './FoodNutrients.module.css'
 
-interface NutrientsProps {
+interface FoodNutrientsProps {
   foods: FoodProps[]
 }
 
-export default function Nutrients({ foods }: NutrientsProps) {
+export default function FoodNutrients({ foods }: FoodNutrientsProps) {
   const [nutrients, setNutrients] = useState<(string | number)[][]>([])
   const options = {
     slices: {
@@ -27,9 +27,9 @@ export default function Nutrients({ foods }: NutrientsProps) {
 
     const totalNutrients = [
       ['Nutrientes', 'Macronutrientes'],
-      [`Proteína (${utilityHelper.formatNumber(totalProtein)})`, totalProtein],
-      [`Carboidrato (${utilityHelper.formatNumber(totalCarbohydrate)})`, totalCarbohydrate],
-      [`Gordura (${utilityHelper.formatNumber(totalFat)})`, totalFat]
+      [`Proteína (${utilityHelper.formatNumber(totalProtein, 2)})`, totalProtein],
+      [`Carboidrato (${utilityHelper.formatNumber(totalCarbohydrate, 2)})`, totalCarbohydrate],
+      [`Gordura (${utilityHelper.formatNumber(totalFat, 2)})`, totalFat]
     ]
 
     setNutrients(totalNutrients)
@@ -38,7 +38,7 @@ export default function Nutrients({ foods }: NutrientsProps) {
   return (
     <Card className={styles.nutrients}>
       <h2>Macronutrientes</h2>
-      <p>Porcentagem de macronutrientes baseadas nos alimentos adicionados</p>
+      <p>Porcentagem de macronutrientes diárias baseadas nos alimentos adicionados</p>
       <PieChart data={nutrients} options={options} />
     </Card>
   )
