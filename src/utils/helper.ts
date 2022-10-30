@@ -57,8 +57,16 @@ function getRandomIcon(): string {
   return ICONS[Math.floor(Math.random() * ICONS.length)]
 }
 
-function calculateEnergy(energy: number, quantity: number, baseQuantity: number) {
+function calculateNutrient(energy: number, quantity: number, baseQuantity: number) {
   return (energy * quantity) / baseQuantity
+}
+
+function calculateNutrients(meal: MealProps) {
+  meal.totalProtein = meal.foods.reduce((acc, food) => acc + calculateNutrient(food.attributes.protein.quantity, food.quantity, food.baseQuantity.quantity), 0)
+  meal.totalCarbohydrate = meal.foods.reduce((acc, food) => acc + calculateNutrient(food.attributes.carbohydrate.quantity, food.quantity, food.baseQuantity.quantity), 0)
+  meal.totalFat = meal.foods.reduce((acc, food) => acc + calculateNutrient(food.attributes.fat.quantity, food.quantity, food.baseQuantity.quantity), 0)
+  meal.totalEnergy = meal.foods.reduce((acc, food) => acc + calculateNutrient(food.attributes.energy.quantity, food.quantity, food.baseQuantity.quantity), 0)
+  return meal
 }
 
 function getDefaultMeal(): MealProps {
@@ -101,7 +109,8 @@ const helper = {
   getRandomColor,
   getRandomIcon,
   getDefaultMeal,
-  calculateEnergy,
+  calculateNutrient,
+  calculateNutrients,
   formatNumberInput
 }
 

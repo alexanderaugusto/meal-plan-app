@@ -12,11 +12,7 @@ function replaceIds(meal: MealProps) {
 }
 
 function calculateTotal(meal: MealProps) {
-  meal.totalProtein = meal.foods.reduce((acc, food) => acc + helper.calculateEnergy(food.attributes.protein.quantity, food.quantity, food.baseQuantity.quantity), 0)
-  meal.totalCarbohydrate = meal.foods.reduce((acc, food) => acc + helper.calculateEnergy(food.attributes.carbohydrate.quantity, food.quantity, food.baseQuantity.quantity), 0)
-  meal.totalFat = meal.foods.reduce((acc, food) => acc + helper.calculateEnergy(food.attributes.fat.quantity, food.quantity, food.baseQuantity.quantity), 0)
-  meal.totalEnergy = meal.foods.reduce((acc, food) => acc + helper.calculateEnergy(food.attributes.energy.quantity, food.quantity, food.baseQuantity.quantity), 0)
-  return meal
+  return helper.calculateNutrients(meal)
 }
 
 function replaceEmptyValues(meal: MealProps) {

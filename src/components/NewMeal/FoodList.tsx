@@ -20,7 +20,7 @@ export default function FoodList({ foods = [], deleteFood, openFoodModal, openFo
             <div className={styles['food-description']}>
               <h3>{food.name}</h3>
               <h4>{`${food.quantity} ${food.baseQuantity.unit}`}</h4>
-              <p>{`${helper.formatNumber(helper.calculateEnergy(food.attributes.energy.quantity, food.quantity, food.baseQuantity.quantity), 0)} ${food.attributes.energy.unit}`}</p>
+              <p>{`${helper.formatNumber(helper.calculateNutrient(food.attributes.energy.quantity, food.quantity, food.baseQuantity.quantity), 0)} ${food.attributes.energy.unit}`}</p>
             </div>
             <div className={styles.actions}>
               <button className={styles['edit-food']} onClick={() => openFoodQuantityModal(food.id, food.name, food.quantity, food.baseQuantity.unit)}>

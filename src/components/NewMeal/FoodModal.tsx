@@ -81,6 +81,7 @@ export default function FoodModal({ open, onClose, onSave, foods }: FoodModalPro
         const existingFood = foods.find(f => f.tacoApiId === food.tacoApiId)
         return existingFood ? existingFood : { ...food, quantity: food.quantity }
       })
+    console.log(newFoods)
     onSave(newFoods)
     close()
   }

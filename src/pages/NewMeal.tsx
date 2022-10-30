@@ -3,6 +3,7 @@ import { useSearchParams, useNavigate } from 'react-router-dom'
 import FoodList from '../components/NewMeal/FoodList'
 import FoodModal from '../components/NewMeal/FoodModal'
 import FoodQuantityModal from '../components/NewMeal/FoodQuantityModal'
+import Nutrients from '../components/NewMeal/Nutrients'
 import Header from '../components/Header'
 import Input from '../components/Input'
 import { useMeal } from '../contexts/MealContext'
@@ -12,7 +13,6 @@ import helper from '../utils/helper'
 import { FoodProps } from '../types/FoodType'
 import { MealProps } from '../types/MealType'
 import styles from './NewMeal.module.css'
-
 
 interface FoodQuantityModalProps {
   open: boolean
@@ -166,6 +166,12 @@ export default function NewMeal() {
           openFoodQuantityModal={(foodId, foodName, quantity, unit) => setFoodQuantityModal({ open: true, foodId, foodName, quantity, unit })}
         />
       </section>
+      {meal.foods && meal.foods.length > 0 && (
+        <section className={styles['meal-nutrients']}>
+          <h1>Nutrientes</h1>
+          <Nutrients foods={meal.foods} />
+        </section>
+      )}
       <section className={styles['meal-actions']}>
         <button className={styles['btn-submit']} onClick={saveMeal}>Salvar</button>
       </section>

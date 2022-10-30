@@ -1,7 +1,12 @@
 import { TacoApiProps, FoodProps, TacoApiAttrProps, FoodAttrProps } from '../../types/FoodType'
 
 export function mapAttr(attr: any, key: string): any {
-  const attrQty = (attr && attr !== "*") ? attr[key] : 0
+  let attrQty = 0
+
+  if (attr && attr !== "*" && !isNaN(Number(attr[key]))) {
+    attrQty = attr[key]
+  }
+
   const attrUnit = attr ? attr.unit : "g"
 
   return [attrQty, attrUnit]
