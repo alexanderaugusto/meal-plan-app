@@ -1,9 +1,9 @@
 import { db } from '../config/db'
 import { UserProps } from '../types/UserType'
-import helper from '../utils/helper'
+import utilityHelper from '../utils/helper/utilityHelper'
 
 function add(user: UserProps) {
-  user.id = helper.generateUUID()
+  user.id = utilityHelper.generateUUID()
   localStorage.setItem('userId', user.id)
   return db.user.add(user)
 }

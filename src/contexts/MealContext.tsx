@@ -1,7 +1,7 @@
 import React, { createContext, useState, useContext, useEffect, useCallback } from 'react'
 import mealService from '../services/mealService'
 import { MealProps } from '../types/MealType'
-import helper from '../utils/helper'
+import utilityHelper from '../utils/helper/utilityHelper'
 interface MealContextProps {
   meals: MealProps[]
   foodEnergy: number
@@ -22,7 +22,7 @@ export const MealProvider = ({ children }: MealProviderProps) => {
   const getMeals = useCallback(() => {
     mealService.getAll()
       .then((meals) => {
-        setMeals(helper.orderArrayByProperty(meals, 'time', 'asc'))
+        setMeals(utilityHelper.orderArrayByProperty(meals, 'time', 'asc'))
       })
       .catch((error) => {
         console.log(error)

@@ -1,18 +1,19 @@
 import { db } from '../config/db'
 import { MealProps } from '../types/MealType'
-import helper from '../utils/helper'
+import mealHelper from '../utils/helper/mealHelper'
+import utilityHelper from '../utils/helper/utilityHelper'
 
 function replaceIds(meal: MealProps) {
-  meal.id = meal.id.includes('temp') ? helper.generateUUID() : meal.id
+  meal.id = meal.id.includes('temp') ? utilityHelper.generateUUID() : meal.id
   meal.foods = meal.foods.map((food) => {
-    food.id = food.id.includes('temp') ? helper.generateUUID() : food.id
+    food.id = food.id.includes('temp') ? utilityHelper.generateUUID() : food.id
     return food
   })
   return meal
 }
 
 function calculateTotal(meal: MealProps) {
-  return helper.calculateNutrients(meal)
+  return mealHelper.calculateMealNutrients(meal)
 }
 
 function replaceEmptyValues(meal: MealProps) {

@@ -1,7 +1,7 @@
 import Card from '../Card'
 import CircularProgress from '../CircularProgress'
 import Icon from '../Icon'
-import helper from '../../utils/helper'
+import utilityHelper from '../../utils/helper/utilityHelper'
 import styles from './Resume.module.css'
 
 interface ResumeProps {
@@ -16,11 +16,11 @@ export default function Resume({ baseEnergy = 1500, foodEnergy }: ResumeProps) {
       <p>Porcentagem de calorias baseadas nas refeições adicionadas</p>
       <div className={styles.container}>
         <CircularProgress
-          value={helper.calculatePieChartPercentage(foodEnergy, baseEnergy)}
+          value={utilityHelper.calculateCircularProgressPercentage(foodEnergy, baseEnergy)}
           colors={{
-            path: helper.getColorFromVariable('--color-primary'),
-            trail: helper.getColorFromVariable('--color-grey-light'),
-            text: helper.getColorFromVariable('--color-grey')
+            path: utilityHelper.getColorFromVariable('--color-primary'),
+            trail: utilityHelper.getColorFromVariable('--color-grey-light'),
+            text: utilityHelper.getColorFromVariable('--color-grey')
           }}
         />
         <ul>
@@ -28,14 +28,14 @@ export default function Resume({ baseEnergy = 1500, foodEnergy }: ResumeProps) {
             <Icon className={`${styles['icon']} ${styles['icon-energy']}`} icon='fire' />
             <p>
               Calorias Base <br />
-              <b>{helper.formatNumber(baseEnergy, 0)}</b>
+              <b>{utilityHelper.formatNumber(baseEnergy, 0)}</b>
             </p>
           </li>
           <li>
             <Icon className={`${styles['icon']} ${styles['icon-food']}`} icon='utensils' />
             <p>
               Alimentos <br />
-              <b>{helper.formatNumber(foodEnergy, 0)}</b>
+              <b>{utilityHelper.formatNumber(foodEnergy, 0)}</b>
             </p>
           </li>
         </ul>

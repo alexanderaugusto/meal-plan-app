@@ -9,7 +9,7 @@ import Input from '../components/Input'
 import { useMeal } from '../contexts/MealContext'
 import { useUser } from '../contexts/UserContext'
 import mealService from '../services/mealService'
-import helper from '../utils/helper'
+import mealHelper from '../utils/helper/mealHelper'
 import { FoodProps } from '../types/FoodType'
 import { MealProps } from '../types/MealType'
 import styles from './NewMeal.module.css'
@@ -29,7 +29,7 @@ export default function NewMeal() {
   const navigate = useNavigate()
   const { getMeals } = useMeal()
   const { firstLogin } = useUser()
-  const [meal, setMeal] = useState<MealProps>(helper.getDefaultMeal())
+  const [meal, setMeal] = useState<MealProps>(mealHelper.getDefaultMeal())
   const [foodModalOpen, setFoodModalOpen] = useState(false)
   const [foodQuantityModal, setFoodQuantityModal] = useState<FoodQuantityModalProps>({ open: false, foodId: '', foodName: '', quantity: 0, unit: '' })
 

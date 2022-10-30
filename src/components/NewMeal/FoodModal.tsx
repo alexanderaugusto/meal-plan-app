@@ -4,7 +4,7 @@ import FoodQuantityModal from './FoodQuantityModal'
 import Modal from '../Modal'
 import cacheStorage from '../../services/cacheStorage'
 import foodService from '../../services/foodService'
-import helper from '../../utils/helper'
+import utilityHelper from '../../utils/helper/utilityHelper'
 import { FoodProps } from '../../types/FoodType'
 import styles from './FoodModal.module.css'
 
@@ -131,7 +131,7 @@ export default function FoodModal({ open, onClose, onSave, foods }: FoodModalPro
               <div className={styles.description}>
                 <h3>{food.name}</h3>
                 <h4>{`${food.baseQuantity.quantity} ${food.baseQuantity.unit}`}</h4>
-                <p>{`${helper.formatNumber(food.attributes.energy.quantity, 0)} ${food.attributes.energy.unit}`}</p>
+                <p>{`${utilityHelper.formatNumber(food.attributes.energy.quantity, 0)} ${food.attributes.energy.unit}`}</p>
               </div>
               <Input type="checkbox" checked={isSelected(food.tacoApiId)} />
             </li>

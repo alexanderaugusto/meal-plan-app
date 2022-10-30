@@ -1,6 +1,6 @@
 import Card from '../Card'
 import Icon from '../Icon'
-import helper from '../../utils/helper'
+import utilityHelper from '../../utils/helper/utilityHelper'
 import { MealProps } from '../../types/MealType'
 import styles from './MealList.module.css'
 interface MealsProps {
@@ -15,17 +15,17 @@ export default function MealList({ meals = [] }: MealsProps) {
           <Card className={styles['meal-card']} to={`/meal?id=${meal.id}`}>
             <div
               className={styles['icon-card-container']}
-              style={{ background: helper.getColorFromVariable(`--color-meal-${meal.color}`) }}
+              style={{ background: utilityHelper.getColorFromVariable(`--color-meal-${meal.color}`) }}
             >
               <Icon
                 className={`${styles['icon']} ${styles['icon-card']}`}
-                icon={helper.convertStringToIcon(meal.icon)}
+                icon={utilityHelper.convertStringToIcon(meal.icon)}
               />
             </div>
             <div className={styles['meal-description']}>
               <h3>{meal.name}</h3>
               <time>{meal.time}</time>
-              <p>{helper.formatNumber(meal.totalEnergy, 0)} kcal</p>
+              <p>{utilityHelper.formatNumber(meal.totalEnergy, 0)} kcal</p>
             </div>
             <Icon className={`${styles['icon']} ${styles['icon-open']}`} icon='chevron-right' />
           </Card>

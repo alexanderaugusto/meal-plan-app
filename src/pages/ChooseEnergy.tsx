@@ -5,7 +5,7 @@ import { ProgressStep, Step } from '../components/ProgressSteps'
 import Input from '../components/Input'
 import { useUser } from '../contexts/UserContext'
 import userService from '../services/userService'
-import helper from '../utils/helper'
+import utilityHelper from '../utils/helper/utilityHelper'
 import styles from './ChooseEnergy.module.css'
 
 import PROGRESS_STEP_1 from '../assets/img/choose-energy-step-1.svg'
@@ -43,7 +43,7 @@ export default function ChooseEnergy() {
     } else {
       energy = (0.063 * weight + 2.896) * 239
     }
-    setEnergy(Number(helper.formatNumber(energy, 0)))
+    setEnergy(Number(utilityHelper.formatNumber(energy, 0)))
   }
 
   function backToHome() {

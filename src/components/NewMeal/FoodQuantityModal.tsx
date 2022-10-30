@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import Modal from '../Modal'
 import Input from '../Input'
-import helper from '../../utils/helper'
+import utilityHelper from '../../utils/helper/utilityHelper'
 import styles from './FoodQuantityModal.module.css'
 
 interface FoodQuantityModalProps {
@@ -15,10 +15,10 @@ interface FoodQuantityModalProps {
 }
 
 export default function FoodQuantityModal({ open, onClose, onSave, foodId, foodName, defaultQuantity, unit }: FoodQuantityModalProps) {
-  const [quantity, setQuantity] = useState(helper.formatNumberInput(defaultQuantity.toFixed(2).toString()))
+  const [quantity, setQuantity] = useState(utilityHelper.formatNumberInput(defaultQuantity.toFixed(2).toString()))
 
   useEffect(() => {
-    setQuantity(helper.formatNumberInput(defaultQuantity.toFixed(2).toString()))
+    setQuantity(utilityHelper.formatNumberInput(defaultQuantity.toFixed(2).toString()))
   }, [defaultQuantity, open])
 
   function saveQuantity() {
@@ -35,7 +35,7 @@ export default function FoodQuantityModal({ open, onClose, onSave, foodId, foodN
           type="text"
           className={styles['quantity-input']}
           placeholder={`Quantidade (${unit})`}
-          onChange={(e) => setQuantity(helper.formatNumberInput(e.target.value))}
+          onChange={(e) => setQuantity(utilityHelper.formatNumberInput(e.target.value))}
           value={quantity}
         />
         <button className={styles['btn-save']} onClick={saveQuantity}>Salvar</button>
