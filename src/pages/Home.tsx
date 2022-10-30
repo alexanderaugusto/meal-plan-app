@@ -1,7 +1,6 @@
-import { useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
 import Logo from '../components/Logo'
 import MealList from '../components/Home/MealList'
+import Page from '../components/Page'
 import Resume from '../components/Home/Resume'
 import { useMeal } from '../contexts/MealContext'
 import { useUser } from '../contexts/UserContext'
@@ -9,17 +8,10 @@ import styles from './Home.module.css'
 
 export default function Home() {
   const { meals, foodEnergy } = useMeal()
-  const { user, firstLogin } = useUser()
-  const navigate = useNavigate()
-
-  useEffect(() => {
-    if (firstLogin) {
-      navigate('/calories/choose')
-    }
-  }, [firstLogin, navigate])
+  const { user } = useUser()
 
   return (
-    <div className={styles.page}>
+    <Page className={styles.page} checkFirstLogin={true}>
       <section className={styles['logo-section']}>
         <Logo
           color='red'
@@ -37,6 +29,6 @@ export default function Home() {
         <h1>Refeições</h1>
         <MealList meals={meals} />
       </section>
-    </div>
+    </Page>
   )
 }

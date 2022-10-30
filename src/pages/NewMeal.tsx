@@ -7,8 +7,8 @@ import FoodQuantityModal from '../components/NewMeal/FoodQuantityModal'
 import Nutrients from '../components/NewMeal/Nutrients'
 import Header from '../components/Header'
 import Input from '../components/Input'
+import Page from '../components/Page'
 import { useMeal } from '../contexts/MealContext'
-import { useUser } from '../contexts/UserContext'
 import mealService from '../services/mealService'
 import mealHelper from '../utils/helper/mealHelper'
 import { FoodProps } from '../types/FoodType'
@@ -29,7 +29,6 @@ export default function NewMeal() {
   const [searchParams] = useSearchParams()
   const navigate = useNavigate()
   const { getMeals } = useMeal()
-  const { firstLogin } = useUser()
   const [meal, setMeal] = useState<MealProps>(mealHelper.getDefaultMeal())
   const [foodModalOpen, setFoodModalOpen] = useState(false)
   const [foodQuantityModal, setFoodQuantityModal] = useState<FoodQuantityModalProps>({ open: false, foodId: '', foodName: '', quantity: 0, unit: '' })
@@ -49,12 +48,6 @@ export default function NewMeal() {
         })
     }
   }, [searchParams])
-
-  useEffect(() => {
-    if (firstLogin) {
-      navigate('/calories/choose')
-    }
-  }, [firstLogin, navigate])
 
   function changeQuantity(foodId: string, newQuantity: number) {
     const newFoods = meal.foods
@@ -116,7 +109,7 @@ export default function NewMeal() {
   }
 
   return (
-    <div className={styles.page}>
+    <Page className={styles.page} checkFirstLogin={true}>
       <Header
         className={styles.header}
         backTo="/"
@@ -183,6 +176,6 @@ export default function NewMeal() {
           <Nutrients foods={meal.foods} />
         </section>
       )}
-    </div>
+    </Page>
   )
 }

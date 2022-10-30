@@ -1,20 +1,3 @@
-.page {
-  background-color: var(--color-bg);
-  width: 100%;
-  height: 100%;
-  max-width: 600px;
-  padding: 2rem;
-  box-sizing: border-box;
-  margin: 0 auto;
-}
-
-.page .step {
-  padding: 5rem 0;
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-gap: 2rem;
-}
-
 .page .step img {
   width: 100%;
 }

@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import Icon from '../components/Icon'
 import { ProgressStep, Step } from '../components/ProgressSteps'
 import Input from '../components/Input'
+import Page from '../components/Page'
 import { useUser } from '../contexts/UserContext'
 import userService from '../services/userService'
 import utilityHelper from '../utils/helper/utilityHelper'
@@ -75,7 +76,7 @@ export default function ChooseEnergy() {
   }
 
   return (
-    <div className={styles.page}>
+    <Page className={styles.page} checkFirstLogin={false}>
       <ProgressStep step={step}>
         <Step
           className={`${styles.step} ${styles['step-1']}`}
@@ -131,6 +132,6 @@ export default function ChooseEnergy() {
           />
         </Step>
       </ProgressStep>
-    </div>
+    </Page>
   )
 }
