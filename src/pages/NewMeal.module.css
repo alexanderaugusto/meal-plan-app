@@ -11,6 +11,23 @@
   margin: 0 auto;
 }
 
+.page .header .header-actions {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.page .header .header-actions button {
+  color: var(--color-light);
+  font-size: 1.4rem;
+  margin-left: 1rem;
+}
+.page .header .header-actions button:hover {
+  /* create grow hover effect */
+  transform: scale(1.05);
+  transition: transform 0.2s ease-in-out;
+}
+
 .page section h1 {
   color: var(--color-dark);
   margin-bottom: 0.8rem;
@@ -22,29 +39,4 @@
   display: grid;
   grid-template-columns: 1fr;
   grid-gap: 1rem;
-}
-
-.page .meal-actions {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  padding: 1rem;
-  box-sizing: border-box;
-}
-
-.page .meal-actions button {
-  width: 100%;
-  height: 40px;
-  max-width: 600px;
-  border: none;
-  border-radius: 4px;
-  font-size: 1rem;
-  font-weight: 700;
-  color: var(--color-light);
-  background-color: var(--color-dark);
-  cursor: pointer;
 }

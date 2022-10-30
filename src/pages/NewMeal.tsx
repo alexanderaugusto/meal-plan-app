@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useSearchParams, useNavigate } from 'react-router-dom'
+import Icon from '../components/Icon'
 import FoodList from '../components/NewMeal/FoodList'
 import FoodModal from '../components/NewMeal/FoodModal'
 import FoodQuantityModal from '../components/NewMeal/FoodQuantityModal'
@@ -99,8 +100,8 @@ export default function NewMeal() {
     }
   }
 
-  function deleteMeal(id: string) {
-    mealService.remove(id)
+  function deleteMeal() {
+    mealService.remove(meal.id)
       .then(() => {
         getMeals()
         navigate('/')
@@ -117,12 +118,22 @@ export default function NewMeal() {
   return (
     <div className={styles.page}>
       <Header
-        to="/"
+        className={styles.header}
+        backTo="/"
         title={searchParams.get(MEAL_PARAM) ? meal.name : "Nova refeição"}
-        actionEnabled={searchParams.get(MEAL_PARAM) ? true : false}
-        action={() => deleteMeal(meal.id)}
-        actionIcon="trash"
-      />
+      >
+        <div className={styles['header-actions']}>
+          <button onClick={saveMeal}>
+            <Icon className={styles.icon} icon='check' /> {' '}
+            Salvar
+          </button>
+          {searchParams.get(MEAL_PARAM) && (
+            <button onClick={deleteMeal}>
+              <Icon className={styles.icon} icon='trash' />
+            </button>
+          )}
+        </div>
+      </Header>
       <FoodModal
         open={foodModalOpen}
         onClose={() => setFoodModalOpen(false)}
@@ -172,9 +183,6 @@ export default function NewMeal() {
           <Nutrients foods={meal.foods} />
         </section>
       )}
-      <section className={styles['meal-actions']}>
-        <button className={styles['btn-submit']} onClick={saveMeal}>Salvar</button>
-      </section>
     </div>
   )
 }
