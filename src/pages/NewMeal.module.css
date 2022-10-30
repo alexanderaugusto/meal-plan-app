@@ -1,5 +1,5 @@
 .page {
-  padding: 5.5rem 1rem;
+  padding-top: 5.5rem;
 }
 
 .page .header .header-actions {
@@ -12,10 +12,6 @@
   color: var(--color-light);
   font-size: 1.4rem;
   margin-left: 1rem;
-}
-.page .header .header-actions button:hover {
-  transform: scale(1.05);
-  transition: transform 0.2s ease-in-out;
 }
 
 .page section h1 {

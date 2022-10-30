@@ -116,12 +116,12 @@ export default function NewMeal() {
         title={searchParams.get(MEAL_PARAM) ? meal.name : "Nova refeição"}
       >
         <div className={styles['header-actions']}>
-          <button onClick={saveMeal}>
+          <button className="btn-icon" onClick={saveMeal}>
             <Icon className={styles.icon} icon='check' /> {' '}
             Salvar
           </button>
           {searchParams.get(MEAL_PARAM) && (
-            <button onClick={deleteMeal}>
+            <button className="btn-icon" onClick={deleteMeal}>
               <Icon className={styles.icon} icon='trash' />
             </button>
           )}

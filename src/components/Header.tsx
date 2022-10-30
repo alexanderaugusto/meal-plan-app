@@ -19,7 +19,7 @@ export default function Header({ backTo, title, className, children }: HeaderPro
 
   return (
     <header className={`${styles.header} ${className}`}>
-      <button onClick={handleClick} >
+      <button className="btn-icon" onClick={handleClick}>
         <Icon className={styles.icon} icon="arrow-left" />
       </button>
       <h3>{title}</h3>

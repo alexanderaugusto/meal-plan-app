@@ -87,13 +87,13 @@ export default function ChooseEnergy() {
           <h2>Selecione uma opção</h2>
           <ul className={styles['gender-container']}>
             <li className={gender === 'F' ? styles['gender-selected'] : ''}>
-              <button onClick={() => setGender('F')}>
+              <button className="btn-icon" onClick={() => setGender('F')}>
                 <Icon className={styles['icon-gender-mini']} icon="venus" />
                 <Icon className={styles['icon-gender']} icon="female" />
               </button>
             </li>
             <li className={gender === 'M' ? styles['gender-selected'] : ''}>
-              <button onClick={() => setGender('M')}>
+              <button className="btn-icon" onClick={() => setGender('M')}>
                 <Icon className={styles['icon-gender-mini']} icon="mars" />
                 <Icon className={styles['icon-gender']} icon="male" />
               </button>

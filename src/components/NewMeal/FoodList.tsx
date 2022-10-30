@@ -29,10 +29,10 @@ export default function FoodList({ foods = [], deleteFood, openFoodModal, openFo
           }}
         >
           <div className={styles.actions}>
-            <button className={styles['edit-food']} onClick={() => openFoodQuantityModal(food.id, food.name, food.quantity, food.baseQuantity.unit)}>
+            <button className={`btn-icon ${styles['edit-food']}`} onClick={() => openFoodQuantityModal(food.id, food.name, food.quantity, food.baseQuantity.unit)}>
               <Icon className={styles.icon} icon="pen" />
             </button>
-            <button className={styles['delete-food']} onClick={() => deleteFood(food.id)}>
+            <button className={`btn-icon ${styles['delete-food']}`} onClick={() => deleteFood(food.id)}>
               <Icon className={styles.icon} icon="trash" />
             </button>
           </div>

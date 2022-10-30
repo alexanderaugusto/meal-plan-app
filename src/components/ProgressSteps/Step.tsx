@@ -17,11 +17,11 @@ export default function Step({ className, children, onNext, onPrevious, disableN
 
       <div className={styles['step-buttons']}>
         {onPrevious && (
-          <button className={styles['step-button-previous']} onClick={onPrevious}>
+          <button className={`btn-icon ${styles['step-button-previous']}`} onClick={onPrevious}>
             <Icon icon="chevron-left" />
           </button>
         )}
-        <button className={styles['step-button-next']} onClick={onNext} disabled={disableNext}>
+        <button className={`btn-icon ${styles['step-button-next']}`} onClick={onNext} disabled={disableNext}>
           <Icon icon="chevron-right" />
         </button>
       </div>
