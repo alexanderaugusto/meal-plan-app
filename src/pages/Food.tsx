@@ -85,7 +85,8 @@ export default function Food() {
   }
 
   function onBack() {
-    navigate(`/meal?id=${searchParams.get(MEAL_PARAM)}`)
+    const mealId = searchParams.get(MEAL_PARAM)
+    navigate(`/meal${mealId ? `?${MEAL_PARAM}=${mealId}` : ''}`)
   }
 
   return (

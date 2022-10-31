@@ -36,10 +36,12 @@ export default function Home() {
         <h1>Refeições</h1>
         <MealList meals={meals} />
       </section>
-      <section>
-        <h1>Nutrientes</h1>
-        <MealNutrients meals={meals} />
-      </section>
+      {meals && meals.length > 0 && (
+        <section>
+          <h1>Nutrientes</h1>
+          <MealNutrients meals={meals} />
+        </section>
+      )}
     </Page>
   )
 }
