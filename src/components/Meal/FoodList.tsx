@@ -9,12 +9,12 @@ interface FoodsProps {
   foods: FoodProps[]
   deleteFood: (foodId: string) => void
   openFoodQuantityModal: (foodId: string, foodName: string, quantity: number, unit: string) => void
-  openFoodModal: () => void
+  openFoodPage: () => void
 }
 
-export default function FoodList({ foods = [], deleteFood, openFoodModal, openFoodQuantityModal }: FoodsProps) {
+export default function FoodList({ foods = [], deleteFood, openFoodPage, openFoodQuantityModal }: FoodsProps) {
   return (
-    <List newItem="Novo alimento" onClick={openFoodModal}>
+    <List newItem="Novo alimento" onNewItemClick={openFoodPage}>
       {foods.map(food => (
         <Item
           className={styles['food-item']}

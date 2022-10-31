@@ -1,0 +1,14 @@
+.foods .food-item {
+  border-bottom: 1px solid var(--color-grey-light);
+  cursor: pointer;
+}
+
+.foods .food-item .item-card {
+  background-color: transparent;
+  box-shadow: none;
+  padding: 1rem;
+}
+
+.pagination {
+  padding: 2rem 0;
+}

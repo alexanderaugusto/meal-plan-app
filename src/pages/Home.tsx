@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import Logo from '../components/Logo'
 import MealList from '../components/Home/MealList'
 import MealNutrients from '../components/Home/MealNutrients'
@@ -5,11 +6,16 @@ import Page from '../components/Page'
 import Resume from '../components/Home/Resume'
 import { useMeal } from '../contexts/MealContext'
 import { useUser } from '../contexts/UserContext'
+import { MealProps } from '../types/MealType'
 import styles from './Home.module.css'
 
 export default function Home() {
-  const { meals, foodEnergy } = useMeal()
+  const { meals, foodEnergy, setCurrentMeal } = useMeal()
   const { user } = useUser()
+
+  useEffect(() => {
+    setCurrentMeal({} as MealProps)
+  }, [setCurrentMeal])
 
   return (
     <Page className={styles.page} checkFirstLogin={true}>

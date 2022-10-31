@@ -10,7 +10,9 @@ interface ItemProps {
   name: string
   description: string
   to?: string
+  onClick?: () => void
   className?: string
+  cardClassName?: string
   nutrients: {
     energy: string
     protein: string
@@ -20,10 +22,10 @@ interface ItemProps {
   children?: ReactNode
 }
 
-export default function Item({ color, icon, name, description, to, className, nutrients, children }: ItemProps) {
+export default function Item({ color, icon, name, description, to, onClick, className, cardClassName, nutrients, children }: ItemProps) {
   return (
     <li className={`${styles.item} ${className}`}>
-      <Card className={styles['item-card']} to={to}>
+      <Card className={`${styles['item-card']} ${cardClassName}`} to={to} onClick={onClick}>
         {icon && (
           <div
             className={styles['item-icon']}

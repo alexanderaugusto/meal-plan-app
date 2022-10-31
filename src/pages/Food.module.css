@@ -1,0 +1,13 @@
+.page {
+  grid-gap: 0;
+  padding-top: 5.5rem;
+}
+
+.page .header-actions .icon {
+  color: var(--color-light);
+  font-size: 1.4rem;
+}
+
+.page .search {
+  padding: 1rem 0;
+}

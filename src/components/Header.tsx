@@ -1,28 +1,24 @@
 import { ReactNode } from "react"
-import { useNavigate } from "react-router-dom"
 import Icon from "./Icon"
 import styles from "./Header.module.css"
 
 interface HeaderProps {
   title: string
-  backTo: string
+  onBack?: () => void
   className?: string
+  titleClassName?: string
   children?: ReactNode
 }
 
-export default function Header({ backTo, title, className, children }: HeaderProps) {
-  const navigate = useNavigate()
-
-  function handleClick() {
-    navigate(backTo)
-  }
-
+export default function Header({ onBack, title, className, titleClassName, children }: HeaderProps) {
   return (
     <header className={`${styles.header} ${className}`}>
-      <button className="btn-icon" onClick={handleClick}>
-        <Icon className={styles.icon} icon="arrow-left" />
-      </button>
-      <h3>{title}</h3>
+      {onBack && (
+        <button className="btn-icon" onClick={onBack}>
+          <Icon className={styles.icon} icon="arrow-left" />
+        </button>
+      )}
+      <h3 className={titleClassName}>{title}</h3>
       <div className={styles.actions}>
         {children}
       </div>

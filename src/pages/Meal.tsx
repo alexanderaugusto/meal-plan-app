@@ -1,19 +1,16 @@
 import React, { useEffect, useState } from 'react'
 import { useSearchParams, useNavigate } from 'react-router-dom'
 import Icon from '../components/Icon'
-import FoodList from '../components/NewMeal/FoodList'
-import FoodModal from '../components/NewMeal/FoodModal'
-import FoodQuantityModal from '../components/NewMeal/FoodQuantityModal'
-import FoodNutrients from '../components/NewMeal/FoodNutrients'
+import FoodList from '../components/Meal/FoodList'
+import FoodQuantityModal from '../components/Meal/FoodQuantityModal'
+import FoodNutrients from '../components/Meal/FoodNutrients'
 import Header from '../components/Header'
 import Input from '../components/Input'
 import Page from '../components/Page'
 import { useMeal } from '../contexts/MealContext'
 import mealService from '../services/mealService'
 import mealHelper from '../utils/helper/mealHelper'
-import { FoodProps } from '../types/FoodType'
-import { MealProps } from '../types/MealType'
-import styles from './NewMeal.module.css'
+import styles from './Meal.module.css'
 
 interface FoodQuantityModalProps {
   open: boolean
@@ -25,32 +22,33 @@ interface FoodQuantityModalProps {
 
 const MEAL_PARAM = 'id'
 
-export default function NewMeal() {
+export default function Meal() {
   const [searchParams] = useSearchParams()
   const navigate = useNavigate()
-  const { getMeals } = useMeal()
-  const [meal, setMeal] = useState<MealProps>(mealHelper.getDefaultMeal())
-  const [foodModalOpen, setFoodModalOpen] = useState(false)
+  const { getMeals, currentMeal, setCurrentMeal } = useMeal()
   const [foodQuantityModal, setFoodQuantityModal] = useState<FoodQuantityModalProps>({ open: false, foodId: '', foodName: '', quantity: 0, unit: '' })
 
   useEffect(() => {
     const mealId = searchParams.get(MEAL_PARAM)
 
-    if (mealId) {
+    if (mealId && !currentMeal.id) {
       mealService.getById(mealId)
         .then((meal) => {
           if (meal) {
-            setMeal(meal)
+            setCurrentMeal(meal)
           }
         })
         .catch((error) => {
           console.log(error)
         })
     }
-  }, [searchParams])
+    else if (!currentMeal.id) {
+      setCurrentMeal(mealHelper.getDefaultMeal())
+    }
+  }, [searchParams, setCurrentMeal, currentMeal.id])
 
   function changeQuantity(foodId: string, newQuantity: number) {
-    const newFoods = meal.foods
+    const newFoods = currentMeal.foods
       .map(food => {
         if (food.id === foodId) {
           food.quantity = newQuantity
@@ -58,22 +56,22 @@ export default function NewMeal() {
         return food
       })
 
-    setMeal({ ...meal, foods: newFoods })
+    setCurrentMeal({ ...currentMeal, foods: newFoods })
   }
 
   function deleteFood(foodId: string) {
-    const newFoods = meal.foods.filter(food => food.id !== foodId)
-    setMeal({ ...meal, foods: newFoods })
+    const newFoods = currentMeal.foods.filter(food => food.id !== foodId)
+    setCurrentMeal({ ...currentMeal, foods: newFoods })
   }
 
   function changeMeal(event: React.ChangeEvent<HTMLInputElement>) {
     const { name, value } = event.target
-    setMeal({ ...meal, [name]: value })
+    setCurrentMeal({ ...currentMeal, [name]: value })
   }
 
   function saveMeal() {
     if (searchParams.get(MEAL_PARAM)) {
-      mealService.update(meal)
+      mealService.update(currentMeal)
         .then(() => {
           getMeals()
           navigate('/')
@@ -82,7 +80,7 @@ export default function NewMeal() {
           console.log(error)
         })
     } else {
-      mealService.add(meal)
+      mealService.add(currentMeal)
         .then(() => {
           getMeals()
           navigate('/')
@@ -94,7 +92,7 @@ export default function NewMeal() {
   }
 
   function deleteMeal() {
-    mealService.remove(meal.id)
+    mealService.remove(currentMeal.id)
       .then(() => {
         getMeals()
         navigate('/')
@@ -104,22 +102,20 @@ export default function NewMeal() {
       })
   }
 
-  function updateFoods(foods: FoodProps[]) {
-    setMeal({ ...meal, foods })
+  function goToFoodPage() {
+    const mealId = searchParams.get(MEAL_PARAM)
+    navigate(`/meal/food${mealId ? `?${MEAL_PARAM}=${mealId}` : ''}`)
   }
 
   return (
     <Page className={styles.page} checkFirstLogin={true}>
       <Header
         className={styles.header}
-        backTo="/"
-        title={searchParams.get(MEAL_PARAM) ? meal.name : "Nova refeição"}
+        titleClassName={styles['header-title']}
+        onBack={() => saveMeal()}
+        title={searchParams.get(MEAL_PARAM) ? currentMeal.name : "Nova refeição"}
       >
         <div className={styles['header-actions']}>
-          <button className="btn-icon" onClick={saveMeal}>
-            <Icon className={styles.icon} icon='check' /> {' '}
-            Salvar
-          </button>
           {searchParams.get(MEAL_PARAM) && (
             <button className="btn-icon" onClick={deleteMeal}>
               <Icon className={styles.icon} icon='trash' />
@@ -127,12 +123,6 @@ export default function NewMeal() {
           )}
         </div>
       </Header>
-      <FoodModal
-        open={foodModalOpen}
-        onClose={() => setFoodModalOpen(false)}
-        foods={meal.foods}
-        onSave={updateFoods}
-      />
       <FoodQuantityModal
         open={foodQuantityModal.open}
         onClose={() => setFoodQuantityModal({ ...foodQuantityModal, open: false })}
@@ -149,14 +139,15 @@ export default function NewMeal() {
             type="text"
             name="name"
             placeholder="Nome da refeição"
-            value={meal.name}
+            value={currentMeal.name}
             onChange={changeMeal}
+            maxLength={40}
           />
           <Input
             type="time"
             name="time"
             placeholder="Defina um horário para sua refeição"
-            value={meal.time}
+            value={currentMeal.time}
             onChange={changeMeal}
           />
         </div>
@@ -164,16 +155,16 @@ export default function NewMeal() {
       <section className={styles['meal-foods']}>
         <h1>Alimentos</h1>
         <FoodList
-          foods={meal.foods}
+          foods={currentMeal.foods}
           deleteFood={deleteFood}
-          openFoodModal={() => setFoodModalOpen(true)}
+          openFoodPage={() => goToFoodPage()}
           openFoodQuantityModal={(foodId, foodName, quantity, unit) => setFoodQuantityModal({ open: true, foodId, foodName, quantity, unit })}
         />
       </section>
-      {meal.foods && meal.foods.length > 0 && (
+      {currentMeal.foods && currentMeal.foods.length > 0 && (
         <section className={styles['meal-nutrients']}>
           <h1>Nutrientes</h1>
-          <FoodNutrients foods={meal.foods} />
+          <FoodNutrients foods={currentMeal.foods} />
         </section>
       )}
     </Page>
