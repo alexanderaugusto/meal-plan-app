@@ -6,7 +6,6 @@ import Icon from '../components/Icon'
 import Input from '../components/Input'
 import Page from '../components/Page'
 import { useMeal } from '../contexts/MealContext'
-import cacheStorage from '../services/cacheStorage'
 import foodService from '../services/foodService'
 import mealService from '../services/mealService'
 import { FoodProps } from '../types/FoodType'
@@ -43,7 +42,7 @@ export default function Food() {
       .then((foods) => {
         setTacoApiFoods(foods)
         setOriginalTacoApiFoods(foods)
-        cacheStorage.put('taco-api-foods', foods)
+        localStorage.setItem('taco-api-foods', JSON.stringify(foods))
       })
       .catch((error) => {
         console.error(error)

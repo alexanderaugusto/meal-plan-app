@@ -1,5 +1,4 @@
 import React, { createContext, useState, useContext, useEffect, useCallback } from 'react'
-import cacheStorage from '../services/cacheStorage'
 import userService from '../services/userService'
 import foodService from '../services/foodService'
 import { UserProps } from '../types/UserType'
@@ -44,11 +43,11 @@ export const UserProvider = ({ children }: UserProviderProps) => {
   }, [])
 
   const getFoods = useCallback(async () => {
-    const foods = await cacheStorage.get('taco-api-foods')
+    const foods = localStorage.getItem('taco-api-foods')
     if (!foods) {
       foodService.getFoods()
         .then((foods) => {
-          cacheStorage.put('taco-api-foods', foods)
+          localStorage.setItem('taco-api-foods', JSON.stringify(foods))
         })
         .catch((error) => {
           console.error(error)
