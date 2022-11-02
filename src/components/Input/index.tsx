@@ -1,4 +1,4 @@
-import DateInput from './TimeInput'
+import TimeInput from './TimeInput'
 import CheckBoxInput from './CheckBoxInput'
 import TextInput from './TextInput'
 
@@ -14,7 +14,7 @@ export default function Input({ type, ...props }: InputProps) {
   const inputType = {
     text: TextInput,
     checkbox: CheckBoxInput,
-    time: DateInput,
+    time: TimeInput,
   } as InputTypeProps
 
   const InputType = inputType[type]
