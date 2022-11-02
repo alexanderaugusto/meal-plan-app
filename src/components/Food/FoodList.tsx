@@ -32,7 +32,6 @@ const ITEM_PER_PAGE = 10
 
 export default function FoodList({ foods, selecteds, onSelectFood, onRemoveFood }: FoodListProps) {
   const [foodQuantityModal, setFoodQuantityModal] = useState<FoodQuantityModalProps>({ open: false, foodId: '', foodName: '', quantity: 0, unit: '' })
-  const [foodList, setFoodList] = useState<FoodProps[]>([])
   const [pagination, setPagination] = useState<PaginationProps>({ page: 1, totalPages: 1 })
 
   useEffect(() => {
@@ -41,10 +40,6 @@ export default function FoodList({ foods, selecteds, onSelectFood, onRemoveFood 
       totalPages: Math.ceil(foods.length / ITEM_PER_PAGE),
     })
   }, [foods])
-
-  useEffect(() => {
-    setFoodList(foods.slice((pagination.page - 1) * ITEM_PER_PAGE, pagination.page * ITEM_PER_PAGE))
-  }, [pagination, setFoodList, foods])
 
   function changeSelected(food: FoodProps) {
     if (selecteds.includes(food.tacoApiId)) {
@@ -66,6 +61,8 @@ export default function FoodList({ foods, selecteds, onSelectFood, onRemoveFood 
     setPagination({ ...pagination, page })
   }
 
+  const foodList = foods.slice((pagination.page - 1) * ITEM_PER_PAGE, pagination.page * ITEM_PER_PAGE)
+
   return (
     <>
       <FoodQuantityModal
@@ -78,31 +75,35 @@ export default function FoodList({ foods, selecteds, onSelectFood, onRemoveFood 
         onSave={selectFood}
       />
       <List className={styles.foods}>
-        {foodList.map(food => (
-          <Item
-            className={styles['food-item']}
-            cardClassName={styles['item-card']}
-            key={food.id}
-            name={food.name}
-            description={`${food.baseQuantity.quantity} ${food.baseQuantity.unit}`}
-            nutrients={{
-              energy: `${utilityHelper.formatNumber(mealHelper.calculateNutrient(food.attributes.energy.quantity, food.baseQuantity.quantity, food.baseQuantity.quantity), 0)} ${food.attributes.energy.unit}`,
-              protein: `${utilityHelper.formatNumber(mealHelper.calculateNutrient(food.attributes.protein.quantity, food.baseQuantity.quantity, food.baseQuantity.quantity), 2)} ${food.attributes.protein.unit}`,
-              carbohydrate: `${utilityHelper.formatNumber(mealHelper.calculateNutrient(food.attributes.carbohydrate.quantity, food.baseQuantity.quantity, food.baseQuantity.quantity), 2)} ${food.attributes.carbohydrate.unit}`,
-              fat: `${utilityHelper.formatNumber(mealHelper.calculateNutrient(food.attributes.fat.quantity, food.baseQuantity.quantity, food.baseQuantity.quantity), 2)} ${food.attributes.fat.unit}`
-            }}
-            onClick={() => changeSelected(food)}
-          >
-            <Input type="checkbox" checked={isSelected(food.tacoApiId)} />
-          </Item>
-        ))}
+        {foodList.map(food => {
+          return (
+            <Item
+              className={styles['food-item']}
+              cardClassName={styles['item-card']}
+              key={food.id}
+              name={food.name}
+              description={`${food.baseQuantity.quantity} ${food.baseQuantity.unit}`}
+              nutrients={{
+                energy: `${utilityHelper.formatNumber(mealHelper.calculateNutrient(food.attributes.energy.quantity, food.baseQuantity.quantity, food.baseQuantity.quantity), 0)} ${food.attributes.energy.unit}`,
+                protein: `${utilityHelper.formatNumber(mealHelper.calculateNutrient(food.attributes.protein.quantity, food.baseQuantity.quantity, food.baseQuantity.quantity), 2)} ${food.attributes.protein.unit}`,
+                carbohydrate: `${utilityHelper.formatNumber(mealHelper.calculateNutrient(food.attributes.carbohydrate.quantity, food.baseQuantity.quantity, food.baseQuantity.quantity), 2)} ${food.attributes.carbohydrate.unit}`,
+                fat: `${utilityHelper.formatNumber(mealHelper.calculateNutrient(food.attributes.fat.quantity, food.baseQuantity.quantity, food.baseQuantity.quantity), 2)} ${food.attributes.fat.unit}`
+              }}
+              onClick={() => changeSelected(food)}
+            >
+              <Input type="checkbox" checked={isSelected(food.tacoApiId)} />
+            </Item>
+          )
+        })}
       </List>
-      <Pagination
-        className={styles.pagination}
-        page={pagination.page}
-        totalPages={pagination.totalPages}
-        setPage={(page) => changePage(page)}
-      />
+      {pagination.totalPages > 1 && (
+        <Pagination
+          className={styles.pagination}
+          page={pagination.page}
+          totalPages={pagination.totalPages}
+          setPage={(page) => changePage(page)}
+        />
+      )}
     </>
   )
 }

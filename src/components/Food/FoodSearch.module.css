@@ -1,0 +1,27 @@
+.food-search {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.food-search .filter-button {
+  background-color: var(--color-dark);
+  color: var(--color-light);
+  border: none;
+  border-radius: 0.5rem;
+  padding: 0.5rem 1rem;
+  margin-left: 1rem;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  height: 40px;
+}
+
+.food-search .filter-button .icon {
+  margin-right: 7px;
+}

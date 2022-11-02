@@ -29,7 +29,10 @@ import {
   faFemale,
   faMars,
   faVenus,
-  faChevronLeft
+  faChevronLeft,
+  faSortAlphaDown,
+  faSortAlphaUp,
+  faFilter
 } from "@fortawesome/free-solid-svg-icons"
 import { MealProvider } from "./contexts/MealContext"
 import { UserProvider } from "./contexts/UserContext"
@@ -64,7 +67,10 @@ library.add(faUtensils,
   faMale,
   faFemale,
   faMars,
-  faVenus
+  faVenus,
+  faSortAlphaDown,
+  faSortAlphaUp,
+  faFilter
 )
 
 export default function App() {

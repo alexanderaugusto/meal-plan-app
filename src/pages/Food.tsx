@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react'
 import { useNavigate, useSearchParams } from 'react-router-dom'
 import FoodList from '../components/Food/FoodList'
+import FoodSearch from '../components/Food/FoodSearch'
 import Header from '../components/Header'
 import Icon from '../components/Icon'
-import Input from '../components/Input'
 import Page from '../components/Page'
 import { useMeal } from '../contexts/MealContext'
 import foodService from '../services/foodService'
@@ -69,20 +69,6 @@ export default function Food() {
     setCurrentMeal({ ...currentMeal, foods: newFoods })
   }
 
-  function search(name: string, searchCriteria: string) {
-    name = name.replace(/[.,/#!$%^&*;:{}=\-_`~()]/g, '').toLowerCase()
-    searchCriteria = searchCriteria.replace(/[.,/#!$%^&*;:{}=\-_`~()]/g, '').toLowerCase()
-
-    const splittedSearchCriteria = searchCriteria.split(' ')
-
-    return splittedSearchCriteria.every(criteria => name.includes(criteria))
-  }
-
-  function searchFoods(searchCriteria: string) {
-    const filteredFoods = originalTacoApiFoods.filter(food => search(food.name, searchCriteria))
-    setTacoApiFoods(filteredFoods)
-  }
-
   function onBack() {
     const mealId = searchParams.get(MEAL_PARAM)
     navigate(`/meal${mealId ? `?${MEAL_PARAM}=${mealId}` : ''}`)
@@ -101,10 +87,13 @@ export default function Food() {
         </div>
       </Header>
       <section className={styles.search}>
-        <Input
-          type="text"
-          placeholder="Nome do alimento"
-          onChange={(e) => searchFoods(e.target.value)}
+        <FoodSearch
+          originalFoods={originalTacoApiFoods}
+          selecteds={selecteds}
+          onSearch={foods => {
+            const newFoods = foods.map((food) => food)
+            setTacoApiFoods(newFoods)
+          }}
         />
       </section>
       <section className={styles.foods}>

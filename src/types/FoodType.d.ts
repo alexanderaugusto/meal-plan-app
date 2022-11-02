@@ -67,3 +67,8 @@ export interface TacoApiProps {
   category_id: number
   attributes: TacoApiAttrProps
 }
+
+export interface TacoApiCategoryProps {
+  id: number
+  category: string
+}

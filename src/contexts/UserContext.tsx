@@ -55,10 +55,24 @@ export const UserProvider = ({ children }: UserProviderProps) => {
     }
   }, [])
 
+  const getCatergories = useCallback(async () => {
+    const categories = localStorage.getItem('taco-api-categories')
+    if (!categories) {
+      foodService.getCategories()
+        .then((categories) => {
+          localStorage.setItem('taco-api-categories', JSON.stringify(categories))
+        })
+        .catch((error) => {
+          console.error(error)
+        })
+    }
+  }, [])
+
   useEffect(() => {
     getUser()
     getFoods()
-  }, [getUser, getFoods])
+    getCatergories()
+  }, [getUser, getFoods, getCatergories])
 
   return (
     <UserContext.Provider value={{ user, setUser, getUser, firstLogin, setFirstLogin }}>
