@@ -1,55 +1,60 @@
 import { TacoApiProps, FoodProps, TacoApiAttrProps, FoodAttrProps } from '../../types/FoodType'
 
-export function mapAttr(attr: any, key: string): any {
+export function mapAttr(attr: any, key: string): { qty: number, unit: string } {
   let attrQty = 0
+  let attrUnit = 'g'
 
   if (attr && attr !== "*" && !isNaN(Number(attr[key]))) {
-    attrQty = attr[key]
+    attrQty = Number(attr[key])
+    attrUnit = attr.unit || 'g'
   }
 
-  const attrUnit = attr ? attr.unit : "g"
-
-  return [attrQty, attrUnit]
+  return {
+    qty: attrQty,
+    unit: attrUnit
+  }
 }
 
 export function mapFat(fattyAcids: any): any {
-  let saturated = 0
-  let monounsaturated = 0
-  let polyunsaturated = 0
-  let saturatedUnit = "g"
+  let saturatedAttr = { qty: 0, unit: 'g' }
+  let monounsaturatedAttr = { qty: 0, unit: 'g' }
+  let polyunsaturatedAttr = { qty: 0, unit: 'g' }
 
   if (fattyAcids) {
-    [saturated, saturatedUnit] = mapAttr(fattyAcids.saturated, 'qty')
-    [monounsaturated] = mapAttr(fattyAcids.monounsaturated, 'qty')
-    [polyunsaturated] = mapAttr(fattyAcids.polyunsaturated, 'qty')
+    saturatedAttr = mapAttr(fattyAcids.saturated, 'qty')
+    monounsaturatedAttr = mapAttr(fattyAcids.monounsaturated, 'qty')
+    polyunsaturatedAttr = mapAttr(fattyAcids.polyunsaturated, 'qty')
   }
 
-  const fatQty = Number(saturated) + Number(monounsaturated) + Number(polyunsaturated)
+  const fatQty = saturatedAttr.qty + monounsaturatedAttr.qty + polyunsaturatedAttr.qty
 
-  return [fatQty, saturatedUnit]
+  return {
+    qty: fatQty,
+    unit: saturatedAttr.unit
+  }
 }
 
 export function mapAttrs(attrs: TacoApiAttrProps): FoodAttrProps {
-  const [protein, proteinUnit] = mapAttr(attrs.protein, 'qty')
-  const [carbohydrate, carbohydrateUnit] = mapAttr(attrs.carbohydrate, 'qty')
-  const [energy] = mapAttr(attrs.energy, 'kcal')
-  const [fat, fatUnit] = mapFat(attrs.fatty_acids)
+  const proteinAttr = mapAttr(attrs.protein, 'qty')
+  const carbohydrateAttr = mapAttr(attrs.carbohydrate, 'qty')
+  const energyAttr = mapAttr(attrs.energy, 'kcal')
+  const fatAttr = mapFat(attrs.fatty_acids)
 
   return {
     protein: {
-      quantity: Number(protein),
-      unit: proteinUnit
+      quantity: proteinAttr.qty,
+      unit: proteinAttr.unit
     },
     carbohydrate: {
-      quantity: Number(carbohydrate),
-      unit: carbohydrateUnit
+      quantity: carbohydrateAttr.qty,
+      unit: carbohydrateAttr.unit
     },
     fat: {
-      quantity: Number(fat),
-      unit: fatUnit
+      quantity: fatAttr.qty,
+      unit: fatAttr.unit
     },
     energy: {
-      quantity: Number(energy),
+      quantity: energyAttr.qty,
       unit: 'kcal'
     }
   }
