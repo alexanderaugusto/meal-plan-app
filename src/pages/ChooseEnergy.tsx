@@ -84,7 +84,7 @@ export default function ChooseEnergy() {
           disableNext={gender === ''}
         >
           <img src={PROGRESS_STEP_1} alt="Passo 1" />
-          <h2>Selecione uma opção</h2>
+          <h2>Qual o seu gênero?</h2>
           <ul className={styles['gender-container']}>
             <li className={gender === 'F' ? styles['gender-selected'] : ''}>
               <button className="btn-icon" onClick={() => setGender('F')}>
@@ -109,7 +109,7 @@ export default function ChooseEnergy() {
           onPrevious={previousStep}
         >
           <img src={PROGRESS_STEP_2} alt="Passo 1" />
-          <h2>Qual seu peso (kg)?</h2>
+          <h2>Qual o seu peso (kg)?</h2>
           <Input
             type="text"
             value={weight}

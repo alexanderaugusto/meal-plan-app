@@ -28,14 +28,8 @@
 }
 
 .page .header-title {
-  max-width: 50%;
+  max-width: 60%;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-}
-
-@media (max-width: 510px) {
-  .page .header-title {
-    display: none;
-  }
 }

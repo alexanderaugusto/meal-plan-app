@@ -17,6 +17,10 @@ export default function Home() {
     setCurrentMeal({} as MealProps)
   }, [setCurrentMeal])
 
+  function mealsHasAnyFood() {
+    return meals.some(meal => meal.foods.length > 0)
+  }
+
   return (
     <Page className={styles.page} checkFirstLogin={true}>
       <section className={styles['logo-section']}>
@@ -36,7 +40,7 @@ export default function Home() {
         <h1>Refeições</h1>
         <MealList meals={meals} />
       </section>
-      {meals && meals.length > 0 && (
+      {meals && meals.length > 0 && mealsHasAnyFood() && (
         <section>
           <h1>Nutrientes</h1>
           <MealNutrients meals={meals} />
